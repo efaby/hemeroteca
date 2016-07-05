@@ -100,5 +100,12 @@
 .footer{
 	text-align: center;
 	padding: 5px;
-
+	}
+	
+.page-header {
+	margin: 0 0 20px;
+	}
+	
+.help-text{
+	color: #a94442;
 	}

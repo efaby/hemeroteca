@@ -9,7 +9,9 @@
     
             <tbody>
                 <tr>
-                    <td style="text-align: left;"><img src="imagenes/inpc.png" width="30%" /></td>
+                    <td style="text-align: left;">
+                    	<img src="imagenes/inpc.png" width="30%" />
+                    </td>
 
                     <td >{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}</td>
                 </tr>
