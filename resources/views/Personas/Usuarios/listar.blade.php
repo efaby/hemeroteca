@@ -29,7 +29,7 @@
      <td>{{ $Usuarios->cedula }}</td>
      <td>{{ $Usuarios->activo_pasivo }}</td>
      <td style="text-align: center;"><a href="{{route('usuario.show',$Usuarios->id)}}" data-toggle="modal" data-target="#mostrarUsuarios" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a>
-    <a href="{{route('usuario.edit',$Usuarios->id)}}" data-toggle="modal" data-target="#editarUsuarios" class="btn btn-danger" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>          
+    <a href="{{route('usuario.edit',$Usuarios->id)}}" data-toggle="modal" data-target="#editarUsuarios" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>          
    </tr>
    @endforeach
  </tbody>

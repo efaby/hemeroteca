@@ -12,7 +12,7 @@
         <div id="form-group"  >
           {!!Form::text('cedula',$cedula,['class'=>'form-control','placeholder'=>'---Ingrese cedula---'])!!}
           {!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
-          <a href="{{route('cliente.index')}}" class="btn btn-warning">Limpiar</a>
+          <a href="{{route('cliente.index')}}" class="btn btn-success">Limpiar</a>
         </div>
         {!!Form::close()!!}
         <p>
@@ -38,7 +38,7 @@
            <td>{{ $clientes->cedula_cliente }}</td>
            <td>{{ $clientes->activo_pasivo }}</td>
            <td style="text-align: center;"><a href="{{route('cliente.show',$clientes->id)}}" data-toggle="modal" data-target="#mostrarclientes" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a>
-          <a href="{{route('cliente.edit',$clientes->id)}}" data-toggle="modal" data-target="#editarclientes" class="btn btn-danger" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>           
+          <a href="{{route('cliente.edit',$clientes->id)}}" data-toggle="modal" data-target="#editarclientes" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>           
          </tr>
          @endforeach
        </tbody>

@@ -26,7 +26,7 @@
      <td>{{ $proveedor->cedula_proveedor }}</td>
      <td>{{ $proveedor->activo_pasivo }}</td>
      <td  style="text-align: center;"><a href="{{route('proveedor.show',$proveedor->id)}}" data-toggle="modal" data-target="#mostrarproveedor" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a>
-     <a href="{{route('proveedor.edit',$proveedor->id)}}" data-toggle="modal" data-target="#editarproeveedor" class="btn btn-danger" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>            
+     <a href="{{route('proveedor.edit',$proveedor->id)}}" data-toggle="modal" data-target="#editarproeveedor" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>            
    </tr>
    @endforeach
  </tbody>
