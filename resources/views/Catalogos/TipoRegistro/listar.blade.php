@@ -1,15 +1,22 @@
 @extends ('layout.templateAdministacion')
 
 @section('content')
-
- 
- <table class="table table-striped" >
+<div class="row">
+  	<div class="col-lg-12">
+		<h1 class="page-header">Tipos Registro</h1>
+	</div>
+	<div class="col-lg-12">
+<p>
+  <a href="{{route('tipoRegistro.create')}}" data-toggle="modal" data-target="#crearTipoRegistro" class="btn btn-primary" ><i class="fa fa-file-text-o"></i> Nuevo Registro</a>
+</p>
+<p>Total {{$TipoRegistroobj->total()}} Registros</p>
+<table class="table table-striped table-bordered table-hover" >
      <thead >
-     <tr class="bg-info" style="background-color:#d3d3d3">
+     <tr>
       	<th>Nombre </th>
          <th>Descripción</th>
          <th>Estado</th>
-         <th colspan="3">Acciones</th>
+         <th style="text-align: center; width: 20%">Acciones</th>
      </tr>
      </thead>
      <tbody>
@@ -19,17 +26,14 @@
              <td>{{ $registro->nombre_registro }}</td>
              <td>{{ $registro->descripcion_registro }}</td>
              <td>{{ $registro->activo_pasivo }}</td>
-             <td><a href="{{route('tipoRegistro.show',$registro->id)}}" data-toggle="modal" data-target="#mostrarTipoRegistro" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a></td>
-             <td><a href="{{route('tipoRegistro.edit',$registro->id)}}" data-toggle="modal" data-target="#editarTipoRegistro" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td> 
+             <td style="text-align: center;"><a href="{{route('tipoRegistro.show',$registro->id)}}" data-toggle="modal" data-target="#mostrarTipoRegistro" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a>
+             <a href="{{route('tipoRegistro.edit',$registro->id)}}" data-toggle="modal" data-target="#editarTipoRegistro" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td> 
                         
          </tr>
      @endforeach
      </tbody>
  </table>
-</br>
-</br>
-<div style="text-align:center">
-<a href="{{route('tipoRegistro.create')}}" data-toggle="modal" data-target="#crearTipoRegistro" class="btn btn-primary" ><i class="fa fa-file-text-o"></i> Nuevo Registro</a>
+</div>
 </div>
 
  <!-- Modal Crear Usuario -->

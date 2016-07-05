@@ -1,42 +1,35 @@
-
-<div class="modal-header" style="background-color:#d3d3d3">
+<div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.href='tipoUsuario'">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
         <h3 class="text-center" id="myModalLabel">Datos del Administrador</h3>
 </div>
-    <form class="form-horizontal">
-    <table class="table">
-    
-     <tbody>  
-         <tr>
-         <td ><img src="imagenes/usuarioadministrador.jpg" alt="" /></td>
-        <td > 
-            
-        <td >
-            </br>
-            </br>
-            </br>
-             <div id="nombre-group"  >
-                <label for="isbn" >Nombre </label>
-            </div>
-            <div id="nombre-group" >
-                <text > {{$tiposUsuariosobj->nombre}}</text>
-            </div>   
-            </br>
-            <div id="nombre-group" >
-                <label for="isbn"  >Descripción del Administrador</label>    
-            </div> 
-              <div > 
-                <text > {{$tiposUsuariosobj->descripcion}}</text>           
-             </div>    
-          </td>            
-         </tr>
+<br>
+<div class="col-md-6">
+	<div class="row">
+	    <div class="col-md-12">
+			 <label for="isbn"  >Nombre del Administrador</label>  
+                 <div id="nombre-group" class="form-group">
+                    {{$tiposUsuariosobj->nombre}}
+                </div>
+		</div>
+	</div>
+	<div class="row">
+	    <div class="col-md-12">
+	    	<label for="isbn"  >Descripción del Administrador</label>    
+                <div id="descripcion-group" class="form-group ">
+                     {{$tiposUsuariosobj->descripcion}}
+                </div>
+	    </div>
+	</div>
+	
+</div>
+<div class="col-md-6" style="text-align: center;">
+	<img src="{{asset("imagenes/usuarioadministrador.jpg")}}" alt=""
+	width="150" />
+</div>
 
-     </tbody>
-
- </table>
 
      <div class="modal-footer">
      <table class="table ">   
@@ -47,4 +40,3 @@
             </tbody>
     </table>
     </div>  
- </form>

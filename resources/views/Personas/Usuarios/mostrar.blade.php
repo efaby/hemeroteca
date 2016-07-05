@@ -5,7 +5,7 @@
           </button>
           <h3 class="text-center" id="myModalLabel">Datos del Administrador</h3>
       </div>
-      
+      <br>
       <div class="col-md-6">
 	<div class="row">
 	    <div class="col-md-12">
@@ -71,4 +71,3 @@
         </tbody>
     </table>
 </div>  
-</form>

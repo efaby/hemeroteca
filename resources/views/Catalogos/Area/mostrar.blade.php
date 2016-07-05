@@ -1,42 +1,36 @@
 
-<div class="modal-header" style="background-color:#d3d3d3">
+<div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.href='area'">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
         <h3 class="text-center" id="myModalLabel">Departamentos del Instituto</h3>
 </div>
-    <form class="form-horizontal">
-
- <table class="table">
-
-     <tbody>  
-         <tr>
-         <td > <img src="imagenes/area3.jpg" width='200' height='200' /></td>
-        <td > 
-            
-        <td >
-            </br>
-             <div id="nombre-group"  >
-                <label for="isbn" >Nombre </label>
+<br>
+<div class="col-md-6">
+	<div class="row">
+	    <div class="col-md-12">
+			<label for="isbn" >Nombre </label>
+                 <div id="nombre_area-group" class="form-group">
+                {{$areasobj->nombre_area}}
+                </div>
+		</div>
+	</div>
+	<div class="row">
+	    <div class="col-md-12">
+	    	<label for="isbn"  >Descripcion del Departamento</label> 
+                <div id="descripcion_area-group" class="form-group {!! $errors->has('descripcion_area') ? 'has-error' : '' !!}">
+                 {{$areasobj->descripcion_area}}
             </div>
-            <div id="nombre-group" >
-                <text id="nombre_area"> {{$areasobj->nombre_area}}</text>
-            </div>   
-            </br>
-            <div id="nombre-group" >
-                <label for="isbn"  >Descripcion del Administrador</label>    
-            </div> 
-              <div > 
-                <text id="descripcion_area"> {{$areasobj->descripcion_area}}</text>           
-             </div>    
-          </td>            
-         </tr>
-
-     </tbody>
-
- </table>
-
+	    </div>
+	</div>
+	
+</div>
+<div class="col-md-6" style="text-align: center;">
+	<img src="{{asset("imagenes/area3.jpg")}}" alt=""
+	width="150" />
+</div>
+	
      <div class="modal-footer">
         <table class="table ">
     
@@ -47,4 +41,3 @@
             </tbody>
     </table>
     </div>  
- </form>

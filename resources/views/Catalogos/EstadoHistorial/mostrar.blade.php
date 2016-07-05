@@ -1,41 +1,38 @@
 
-<div class="modal-header" style="background-color:#d3d3d3">
+<div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="window.location.href='estado'">
           <span aria-hidden="true">&times;</span>
           <span class="sr-only">Close</span>
         </button>
         <h3 class="text-center" id="myModalLabel">Estados de Prestaciones de Obras</h3>
 </div>
-    <form class="form-horizontal">
-    <table class="table">
-
-     <tbody>  
-         <tr>
-         <td > <img src="imagenes/historial.png" width='200' height='200' /></td>
-        <td > 
-            
-        <td >
-            </br>
-             <div id="nombre_estado_historial-group"  >
-                <label for="isbn" >Nombre </label>
+<br>
+<div class="col-md-6">
+	<div class="row">
+	    <div class="col-md-12">
+			 <label for="isbn" >Nombre </label>
+                 <div id="nombre_estado_historial-group" class="form-group">
+                {{$EstadoHistorialobj->nombre_estado_historial}}
             </div>
-            <div id="nombre_estado_historial-group" >
-                <text id="nombre_estado_historial"> {{$EstadoHistorialobj->nombre_estado_historial}}</text>
-            </div>   
-            </br>
-            <div id="descripcion_estado_historial-group" >
-                <label for="isbn"  >Descripcion del Estado </label>    
-            </div> 
-              <div > 
-                <text id="descripcion_estado_historial"> {{$EstadoHistorialobj->descripcion_estado_historial}}</text>           
-             </div>    
-          </td>            
-         </tr>
+		</div>
+	</div>
+	<div class="row">
+	    <div class="col-md-12">
+	    	 <label for="isbn"  >Descripcion del Estado </label>   
+	    	 <div id="descripcion_estado_historial-group" class="form-group">
+                {{$EstadoHistorialobj->descripcion_estado_historial}}
+            </div>
+	    </div>
+	</div>
+	
+</div>
+<div class="col-md-6" style="text-align: center;">
+	<img src="{{asset("imagenes/historial.png")}}" alt=""
+	width="150" />
+</div>
 
-     </tbody>
 
- </table>
-
+    
      <div class="modal-footer">
        <table class="table ">
     
@@ -46,4 +43,3 @@
             </tbody>
     </table>
     </div>  
- </form>

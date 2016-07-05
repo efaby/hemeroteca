@@ -109,3 +109,8 @@
 .help-text{
 	color: #a94442;
 	}
+	
+.modal-footer .table{
+	margin-bottom: 0px;
+}
+
