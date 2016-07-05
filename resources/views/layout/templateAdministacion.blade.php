@@ -67,43 +67,17 @@
                             <a href="#"><i class="fa fa-cubes  fa-fw"></i> Prestación y Donación<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="fa fa-edit  fa-fw"></i> Préstamo Obra<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                         <li>
-                                          <a href="{{route('reservaciones.create')}}"><i class="fa fa-cog" ></i> Prestación</a>
-                                       </li>
-                                       <li>
-                                          <a href="{{route('reservaciones.index')}}"><i class='fa fa-pie-chart'></i> Reportes Individuales</a>
-                                       </li>
-                                       <li>
-                                          <a href="{{route('reportes.index')}}"><i class='fa fa-pie-chart'></i> Reportes Clientes</a>
-                                       </li>
-                                    </ul>
+                                    <a href="#"><i class="fa fa-edit  fa-fw"></i> Préstaciones de Obras</a>                                    
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fa fa-book fa-fw"></i> Donaciones Obras<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                         <li>
-                                          <a href="#"><i class='fa fa-plus fa-fw'></i> Donación</a>
-                                       </li>
-                                       <li>
-                                          <a href="#"><i class='fa fa-clipboard fa-fw'></i> Reportes Donación</a>
-                                       </li>
-                                    </ul>
+                                    <a href="#"><i class="fa fa-book fa-fw"></i> Donaciones de Obras</a>                                    
                                 </li>
-                               
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-cube"></i> Devoluciones<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#"><i class='fa fa-edit'></i> Devoluciones Obras</a>
                                 </li>
                                
                             </ul>
-                        </li>
-
+                        </li>                        
                         <li>
                             <a href="#"><i class="fa fa-book"></i> Administración Obras<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -150,7 +124,22 @@
                                
 
                             </ul>
-                        </li>                       
+                        </li>   
+                        <li>
+                            <a href="#"><i class="fa fa-calendar "></i> Reportes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                          <a href="#"><i class='fa fa-pie-chart'></i> Reportes Individuales</a>
+                                       </li>
+                                       <li>
+                                          <a href="{{route('reportes.index')}}"><i class='fa fa-pie-chart'></i> Reportes Clientes</a>
+                                       </li>
+                                        <li>
+                                          <a href="#"><i class='fa fa-clipboard fa-fw'></i> Reportes Donación</a>
+                                       </li>
+                               
+                            </ul>
+                        </li>                    
                     </ul>  
                     <div style="text-align: center;">
                         <img src="{{asset("imagenes/inpc2.png")}}"/>
