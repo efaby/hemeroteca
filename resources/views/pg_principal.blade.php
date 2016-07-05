@@ -105,7 +105,7 @@
 
 <!--login modal-->
 <div id="loginModal" class ="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div  class="modal-dialog" >
+  <div  class="modal-dialog" style="width: 400px;">
   <div class="modal-content">
       <div class="modal-header" >
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -136,7 +136,7 @@
 
 <!--Informativo modal-->
 <div id="informativoModal" class ="modal fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div  class="modal-dialog" style="width: 600px;">
+  <div  class="modal-dialog" >
   <div class="modal-content">
       <div class="modal-header" >
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>

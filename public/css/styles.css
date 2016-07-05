@@ -53,9 +53,6 @@
 	padding: 15px 0;
 }
 
-.modal-dialog{
-	width: 400px;
-}
 
 .top-navbar .informacion {
     float: right;
@@ -90,3 +87,18 @@
     background-color: #3b8dbc;
     border-color: #2a7cab;
 }
+
+.login a:hover,
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+	background-color: #337ab7 !important;
+	}
+
+.sidebar ul li a.active, .nav > li > a:hover {
+    background-color: #ddd;
+}	
+
+.footer{
+	text-align: center;
+	padding: 5px;
+
+	}

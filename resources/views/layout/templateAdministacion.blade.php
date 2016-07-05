@@ -44,8 +44,8 @@
               <div class="title">SISTEMA DE GESTIÓN DE HEMEROTECA</div>  
             </ul>
             <ul class="nav navbar-top-links navbar-right" >
-                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                 <li class="dropdown login">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #fff;">
                       <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user" >
@@ -58,7 +58,7 @@
                 </li>
             </ul>
 
-            <div class="navbar-default sidebar" role="navigation" style="background-color: #c6c6c6">
+            <div class="navbar-default sidebar" role="navigation" style="background-color: #f5f5f5">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu" >
                      <li>
@@ -150,20 +150,20 @@
                             </ul>
                         </li>                       
                     </ul>  
+                    <div style="text-align: center;">
                         <img src="{{asset("imagenes/inpc2.png")}}"/>
+                        </div>
                 </div>
                 
             </div>
            
      </nav>
 
-    <div id="page-wrapper" style="padding-top: 20px; min-height: 550px;">
-           
+    	<div id="page-wrapper" style="padding-top: 20px; min-height: 300px;">           
             @yield('content')
         </div>
-        <div class="modal-footer" >        
-           <h5  style="font-family:verdana;color:white">Sistem@ Protegido por C@pyright</h5>
-    
+        <div class="footer" >        
+           Copyright &copy; 2016  Riobamba - Ecuador    
       </div>
     </div>
 
