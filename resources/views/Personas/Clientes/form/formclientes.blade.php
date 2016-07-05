@@ -42,8 +42,8 @@
 	<img src="imagenes/cliente.jpg" alt=""
 	width="150" />
 </div>
-
-<div class="col-md-12">
+<div class="col-md-12" style="padding: 0px;">
+<div class="col-md-6">
 	{!!Form::label('email_cliente','Corrreo	Electrónico')!!}
 	<div id="email_cliente-group"
 		class="form-group {!! $errors->has('email_cliente') ? 'has-error' : '' !!}">
@@ -51,7 +51,7 @@
 		<div class="help-text"></div>
 	</div> 
 </div>
-<div class="col-md-12">	
+<div class="col-md-6">	
 	{!!Form::label('direccion_cliente','Dirección')!!}
 	<div id="direccion_cliente-group"
 		class="form-group {!! $errors->has('direccion_cliente') ? 'has-error' : '' !!}">
@@ -59,6 +59,7 @@
 		<div class="help-text"></div>
 	</div> 
 </div>	
+</div>
 <div class="col-md-6">	
 	{!!Form::label('telefono_cliente','Télefono Convencional')!!}
 	<div id="telefono_cliente-group"

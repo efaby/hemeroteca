@@ -1,16 +1,23 @@
 @extends ('layout.templateAdministacion')
 
 @section('content')
-
-
-<table class="table table-striped" >
+<div class="row">
+  	<div class="col-lg-12">
+		<h1 class="page-header">Usuarios</h1>
+	</div>
+	<div class="col-lg-12">
+<p>
+  <a href="{{route('usuario.create')}}" data-toggle="modal" data-target="#crearUsuarios" class="btn btn-primary" ><i class="fa fa-file-text-o"></i> Nuevo Registro</a>
+</p>
+<p>Total {{$Usuariosobj->total()}} Registros</p>
+<table class="table table-striped table-bordered table-hover" >
  <thead >
-   <tr class="bg-info" style="background-color:#d3d3d3">
+   <tr>
      <th>Nombres </th>
      <th>Apellidos</th>
      <th>Cédula</th>
      <th>Estado</th>
-     <th colspan="3">Acciones</th>
+     <th style="text-align: center; width: 20%">Acciones</th>
    </tr>
  </thead>
  <tbody>
@@ -21,16 +28,13 @@
      <td>{{ $Usuarios->Apellido }}</td>
      <td>{{ $Usuarios->cedula }}</td>
      <td>{{ $Usuarios->activo_pasivo }}</td>
-     <td><a href="{{route('usuario.show',$Usuarios->id)}}" data-toggle="modal" data-target="#mostrarUsuarios" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a></td>
-     <td><a href="{{route('usuario.edit',$Usuarios->id)}}" data-toggle="modal" data-target="#editarUsuarios" class="btn btn-warning" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>          
+     <td style="text-align: center;"><a href="{{route('usuario.show',$Usuarios->id)}}" data-toggle="modal" data-target="#mostrarUsuarios" class="btn btn-info" ><i class="fa fa-book"></i> Leer</a>
+    <a href="{{route('usuario.edit',$Usuarios->id)}}" data-toggle="modal" data-target="#editarUsuarios" class="btn btn-danger" > <i class="fa fa-pencil-square-o"></i> Editar</a></td>          
    </tr>
    @endforeach
  </tbody>
 </table>
-</br>
-</br>
-<div style="text-align:center">
-  <a href="{{route('usuario.create')}}" data-toggle="modal" data-target="#crearUsuarios" class="btn btn-primary" ><i class="fa fa-file-text-o"></i> Nuevo Registro</a>
+</div>
 </div>
 
 <!-- Modal Crear Usuario -->
