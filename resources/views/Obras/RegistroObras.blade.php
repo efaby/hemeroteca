@@ -14,6 +14,9 @@
 
     $('document').ready(function(){
 
+    	$( "#fecha_publicacion" ).datepicker({  
+    		dateFormat: "yy-mm-dd"  		
+    	});
 
       $('#frmTest').on('submit',function(e){
         var $form = $(this);
