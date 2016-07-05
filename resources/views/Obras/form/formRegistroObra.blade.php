@@ -1,6 +1,6 @@
 <table class="table">
   <thead>
-     <tr class="bg-info" style="background-color:#d3d3d3">
+     <tr>
       	<th colspan="3">Registro de Informacion de la Obras </th>
 
      </tr>
@@ -94,7 +94,7 @@
 
 <table class="table">
   <thead>
-     <tr class="bg-info" style="background-color:#d3d3d3">
+     <tr>
       	<th colspan="3">Datos Importantes de la Obras  </th>
 
      </tr>
@@ -106,46 +106,29 @@
         <div class="form-group">
         	<div class="row">
         	        
-  					<div class="col-md-4">
-  					   <div class="row">
-  					   	{!!Form::label('titulo','Titulo Obra:')!!}
-  					   </div>
-  					    <div class="row">
-  					    	<div class="col-md-11">
+  					<div class="col-md-4">  					  
+  					   	{!!Form::label('titulo','Titulo Obra:')!!}  					  
   					   	    <div id="titulo-group" class="form-group {!! $errors->has('titulo') ? 'has-error' : '' !!}">
                              {!!Form::text('titulo',null,['class'=>'form-control','placeholder'=>'---Ingrese el Titulo---'])!!}
                            <div class="help-text"></div>
                           </div>	
   					   </div>
-  					   </div>
-  					 </div >
-  					<div class="col-md-4">
-  					   <div class="row">
+  					<div class="col-md-4">  					  
   					   	{!!Form::label('autor','Autor:')!!}
-  					   </div>
-  					    <div class="row">
-                  <div class="col-md-11">
   					   	    <div id="autor-group" class="form-group {!! $errors->has('autor') ? 'has-error' : '' !!}">
                              {!!Form::text('autor',null,['class'=>'form-control','placeholder'=>'---Ingrese el Autor---'])!!}
                            <div class="help-text"></div>
                           </div>
-
-                    </div>      	
-  					   </div>
-  					 </div >
-			       <div class="col-md-4">
-               <div class="row">
-                {!!Form::label('editorial','Editorial:')!!}
-               </div>
-                <div class="row">
-                  <div >
+                    </div>
+  					  
+			       <div class="col-md-4">               
+               		{!!Form::label('editorial','Editorial:')!!}               
                     <div id="editorial-group" class="form-group {!! $errors->has('editorial') ? 'has-error' : '' !!}">
                              {!!Form::text('editorial',null,['class'=>'form-control','placeholder'=>'---Ingrese el Editorial---'])!!}
                            <div class="help-text"></div>
                           </div>  
                </div>
-               </div>
-             </div >  
+                
 			</div>
 			</div> 	
 
@@ -153,59 +136,39 @@
 	 <div class="form-group">
         	<div class="row">
         	        
-  					<div class="col-md-4">
-  					   <div class="row">
-  					   	{!!Form::label('fecha_registro','Fecha Registro:')!!}
-  					   </div>
-  					    <div class="row">
-  					    	<div class="col-md-11">
+  					<div class="col-md-4">  					  
+  					   	{!!Form::label('fecha_registro','Fecha Registro:')!!}					  
+  					 
   					   	    <div id="fecha_registro-group" class="form-group {!! $errors->has('fecha_registro') ? 'has-error' : '' !!}">
                           {!!Form::text('fecha_registro',$fechaActual,['class'=>'form-control','placeholder'=>$fechaActual,'readonly'])!!}
                            <div class="help-text"></div>
                           </div>	
   					   </div>
-  					   </div>
-  					 </div >
 
              <div class="col-md-4">
-               <div class="row">
-                {!!Form::label('fecha_publicacion','Fecha Pucblicacion:')!!}
-               </div>
-                <div class="row">
-                <div class="col-md-11">
+                {!!Form::label('fecha_publicacion','Fecha Publicacion:')!!}
                     <div id="fecha_publicacion-group" class="form-group {!! $errors->has('fecha_publicacion') ? 'has-error' : '' !!}">
-                             {!!Form::datetime('fecha_publicacion',null,['class'=>'form-control','placeholder'=>'---Formato : Anio / Mes / Dia---'])!!}
+                             {!!Form::datetime('fecha_publicacion',null,['class'=>'form-control','placeholder'=>'---Formato : Año / Mes / Dia---'])!!}
                            <div class="help-text"></div>
                           </div>  
                     </div> 
-               </div>
-             </div >
   					<div class="col-md-4">
-  					   <div class="row">
   					   	{!!Form::label('numeros_paginas','Numero Pagina:')!!}
-  					   </div>
-  					    <div class="row">
   					   	    <div id="numeros_paginas-group" class="form-group {!! $errors->has('numeros_paginas') ? 'has-error' : '' !!}">
                              {!!Form::text('numeros_paginas',null,['class'=>'form-control','placeholder'=>'---Solo Numeros---'])!!}
                            <div class="help-text"></div>
                           </div>	
-  					   </div>
-  					 </div >
 			        
 			</div>
 			</div> 
 
       <div class="form-group">
-           <div class="row">
                 {!!Form::label('descripcion_obra','Breve Descripcion:')!!}
-           </div>
-            <div class="row">
                     <div id="descripcion_obra-group" class="form-group {!! $errors->has('descripcion_obra') ? 'has-error' : '' !!}">
                              {!!Form::text('descripcion_obra',null,['class'=>'form-control','placeholder'=>'---Descripcion---'])!!}
                            <div class="help-text"></div>
                     </div>  
               </div>
-      </div>
 
          </td>
        </tr>

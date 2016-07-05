@@ -5,20 +5,10 @@
      @include('Obras.form.formRegistroObra')
      {!!Form::hidden('bandera',1)!!}
   {!!Form::submit('Guardar Datos',['class'=>'btn btn-primary'])!!}
+  <a href="{{route('obrasRegistros.create')}}" class="btn btn-info">Regresar</a>
 
- <div class="modal-footer">
-    <table class="table ">
-
-        <tbody>
-            <tr>
-                <td style="text-align: left;"><img src="{{asset("imagenes/inpc.png")}}" width="30%" /></td>                
-            </tr>
-        </tbody>
-    </table>
-
-</div>
 {!!Form::close()!!}
-
+<br><br>
 
 <script type="text/javascript">
 

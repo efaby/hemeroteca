@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>Hemeroteca Virtual</title>
     {!!Html::style('css/bootstrap.min.css')!!}
     {!!Html::style('css/metisMenu.min.css')!!}
     {!!Html::style('css/sb-admin-2.css')!!}
@@ -39,7 +39,7 @@
             </div> 
             <ul class="nav navbar-top-links navbar-left" style="text-align: left;" >
               <div class="logoP">
-				<a href="#"><img alt="Logo" src="imagenes/logo.png"></a>
+				<a href="#"><img alt="Logo" src="{{asset('imagenes/logo.png')}}"></a>
 			</div>
               <div class="title">SISTEMA DE GESTIÓN DE HEMEROTECA</div>  
             </ul>
@@ -62,10 +62,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu" >
                      <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i> Prestación y Donación<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-cubes  fa-fw"></i> Prestación y Donación<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="fa fa-book fa-fw"></i> Préstamo Obra<span class="fa arrow"></span></a>
+                                    <a href="#"><i class="fa fa-edit  fa-fw"></i> Préstamo Obra<span class="fa arrow"></span></a>
                                     <ul class="nav nav-third-level">
                                          <li>
                                           <a href="{{route('reservaciones.create')}}"><i class="fa fa-cog" ></i> Prestación</a>
@@ -93,10 +93,10 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-book"></i> Devoluciones<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-cube"></i> Devoluciones<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class='fa fa-book'></i> Devoluciones Obras</a>
+                                    <a href="#"><i class='fa fa-edit'></i> Devoluciones Obras</a>
                                 </li>
                                
                             </ul>
@@ -106,29 +106,29 @@
                             <a href="#"><i class="fa fa-book"></i> Administración Obras<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('obrasRegistros.create')}}"><i class='fa fa-book'></i> Administración</a>
+                                    <a href="{{route('obrasRegistros.create')}}"><i class='fa fa-check-square-o '></i> Obras</a>
                                 </li>
                                
                                
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> Administración Catálogos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-gears fa-fw"></i> Administración Catálogos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('tipoUsuario.index')}}"><i class='fa fa-list-ol fa-fw'></i> Tipos de Usuarios</a>
+                                    <a href="{{route('tipoUsuario.index')}}"><i class='fa fa-user fa-fw'></i> Tipos de Usuarios</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('tipoRegistro.index')}}"><i class='fa fa-list-ol fa-fw'></i> Tipos de Registro</a>
+                                    <a href="{{route('tipoRegistro.index')}}"><i class='fa fa-file fa-fw'></i> Tipos de Registro</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('tipoObra.index')}}"><i class='fa fa-list-ol fa-fw'></i> Tipos de Obras</a>
+                                    <a href="{{route('tipoObra.index')}}"><i class='fa fa-copy fa-fw'></i> Tipos de Obras</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('area.index')}}"><i class='fa fa-list-ol fa-fw'></i> Areas</a>
+                                    <a href="{{route('area.index')}}"><i class='fa fa-indent fa-fw'></i> Areas</a>
                                 </li>
                                  <li>
-                                    <a href="{{route('estado.index')}}"><i class='fa fa-list-ol fa-fw'></i> Estado Historial</a>
+                                    <a href="{{route('estado.index')}}"><i class='fa fa-list-ul fa-fw'></i> Estado Historial</a>
                                 </li>
 
                             </ul>
@@ -137,13 +137,13 @@
                          <a href="#"><i class="fa fa-users fa-fw"></i> Administración Personas<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('cliente.index')}}"><i class='fa fa-list-ol fa-fw'></i> Clientes</a>
+                                    <a href="{{route('cliente.index')}}"><i class='fa fa-male fa-fw'></i> Clientes</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('proveedor.index')}}"><i class='fa fa-list-ol fa-fw'></i> Proveedores</a>
+                                    <a href="{{route('proveedor.index')}}"><i class='fa fa-male fa-fw'></i> Proveedores</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('usuario.index')}}"><i class='fa fa-list-ol fa-fw'></i> Usuarios</a>
+                                    <a href="{{route('usuario.index')}}"><i class='fa fa-male fa-fw'></i> Usuarios</a>
                                 </li>
                                
 

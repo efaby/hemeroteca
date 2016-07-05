@@ -6,35 +6,26 @@
     @include('Obras.form.formRegistroObra')
 
  {!!Form::submit('Guardar Datos',['class'=>'btn btn-primary'])!!}
-
 {!!Form::close()!!}
 
  {!! Form::open()!!}
- <p></p>
- <p></p>
-<div class="form-group">
-           <div class="table">
-              <div class="bg-info" style="background-color:#d3d3d3">
-                   <p>Registro de los ISBN</p>
-              </div>
-           </div>
-  </div>
 
-       <div class="form-group">
-           <div class="row">
-            <div class="col-md-6">
-               
-             <div class="row" >
-                 <div class="col-md-6" tyle="text-align: left;"> 
-                <a href="{{route('isbn.create')}}" data-toggle="modal" data-target="#IsbnModal" class="btn btn-warning" ><i class="fa fa-plus"></i>Nuevo</a> 
-              </div>
-              </div >  
-             </div>
-              <div class="col-md-4"> 
-                 
-               <table class="table table-condensed" >
+<br><br>
+<table class="table">
+  <thead>
+     <tr>
+      	<th colspan="3">Registro de los ISBN</th>
+
+     </tr>
+     </thead>
+     <tbody>
+	<tr><td>
+	<p>
+	<a href="{{route('isbn.create')}}" data-toggle="modal" data-target="#IsbnModal" class="btn btn-warning" ><i class="fa fa-plus"></i>Nuevo</a> 
+	</p>                 
+               <table class="table table-striped table-bordered table-hover" >
                  <thead >
-                   <tr class="bg-info" >
+                   <tr>
                     <th width="100">Codigo</th>
                     <th width="100">Estado </th>
                   </tr>
@@ -48,35 +39,15 @@
                      @endforeach
                </tbody>
              </table>
-               </div>     
-            </div>
-      </div>
-		<div class="modal-footer">
-		<table class="table ">
-     		<tbody>
-                <tr>
-                    <td style="text-align: left;"><img src="{{asset("imagenes/inpc.png")}}" width="30%" /></td>
-
-                    <td >
-                        @if(count($Isbnobj)>=1)
-                         <a href="{{route('obrasRegistros.create')}}" class="btn btn-primary" >Cerrar</a>
-                         @else
-                         <a href="#" class="btn btn-danger" disabled></i>Cerrar</a>
-                         @endif
-
-                    </td>
-                </tr>
-            </tbody>
-      	</table>
-   		 </div>
+</td>
+</tr>
+</tbody>
+</table>
+  <a href="{{route('obrasRegistros.create')}}" class="btn btn-info">Regresar</a>		
 <!-- Modal Crear Registro -->
 <div class="modal fade" id="IsbnModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" style="height: 250px; width:215px">
-    <div class="modal-content" style="height: 250px; width:215px">
-    
-
-
-
+  <div class="modal-dialog" role="document" style="width:215px">
+    <div class="modal-content" style="width:215px">
     </div>
   </div>
 </div>

@@ -1,12 +1,15 @@
 {!!Form::model($Isbnobj,['route'=>['isbn.update',$Isbnobj->id],'method'=>'PUT','id' => 'frmEditar'])!!}
     
     @include('Obras.form.formRegistroIsbn')
-    <div class="col-md-6">
+    <br>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
             {!!Form::submit('Guardar',['class'=>'btn btn-primary'])!!}
-  </div>
-  <div class="col-md-6">
-           <td><a href="{{route('isbn.show',$Isbnobj->obras_id)}}" class="btn btn-primary">Cancelar</a></td>
-    </div> 
+
+           <a href="#" class="btn btn-primary" id="cancelar">Cancelar</a>
+<br><br>
+    </div>
+    </div>
 
 
 {!!Form::close()!!}
@@ -15,7 +18,10 @@
 
 $('document').ready(function(){
 
-
+	$("#cancelar").click (function () {
+		$(".modal-dialog .close").click()
+	});
+	
   $('#frmTest').on('submit',function(e){
     var $form = $(this);
     e.preventDefault(); //keeps the form from behaving like a normal (non-ajax) html form

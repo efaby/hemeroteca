@@ -3,19 +3,25 @@
  {!!Form::open(['route'=>'isbn.store', 'method'=>'POST', 'id' => 'frmTest'])!!}
 
      @include('Obras.form.formRegistroIsbn')
-
-    <div class="col-md-6">
-            {!!Form::submit('Agregar',['class'=>'btn btn-primary'])!!}
-  </div>
-  <div class="col-md-6">
+<br>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+   
+            {!!Form::submit('Agregar',['class'=>'btn btn-primary'])!!} 
           
-            <td><a href="#" class="btn btn-primary">Cancelar</a></td>
-    </div> 
+            <a href="#" class="btn btn-primary" id="cancelar">Cancelar</a>
+<br><br>
+    </div>
+    </div>
 {!!Form::close()!!}
+
 <script type="text/javascript">
 
 $('document').ready(function(){
 
+	$("#cancelar").click (function () {
+		$(".modal-dialog .close").click()
+	});
 
   $('#frmTest').on('submit',function(e){
     var $form = $(this);

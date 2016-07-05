@@ -59,8 +59,8 @@ class ObrasRegistroController extends Controller
     public function create(Request $request)
     {
         $ObrasObj = Obras::busqueda($request->get('titulo'))->paginate(8); 
-
-        return view('Obras.ListarObras',compact('ObrasObj'));
+		$titulo = $request->get('titulo');
+        return view('Obras.ListarObras',compact('ObrasObj', 'titulo'));
           //Usuario nombre del modelo
         
     }

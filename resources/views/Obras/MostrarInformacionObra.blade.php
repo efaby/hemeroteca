@@ -1,12 +1,9 @@
 
  @extends ('layout.templateAdministacion')
  @section('content')
-
-
-
 <table class="table">
   <thead>
-     <tr class="bg-info" style="background-color:#d3d3d3">
+     <tr>
       	<th colspan="3">Datos Importantes de la Obras  </th>
      </tr>
      </thead>
@@ -17,170 +14,99 @@
          </td>
         <td > 
         <div class="form-group">
-        	<div class="row">
-        	        
-  					<div class="col-md-4">
-  					   <div class="row">
-  					   	{!!Form::label('titulo','Titulo Obra:')!!}
-  					   </div>
-  					    <div class="row">
-  					    	<div class="col-md-11">
+        	<div class="row">        	        
+  					<div class="col-md-4">  					   
+  					   	{!!Form::label('titulo','Titulo Obra:')!!}  					   
   					   	   <div id="id_tipo-group" >
-                      <text > {{$Obrasobj->titulo}}</text>
-                   </div>
-  					   </div>
-  					   </div>
-  					 </div >
-  					<div class="col-md-4">
-  					   <div class="row">
-  					   	{!!Form::label('autor','Autor:')!!}
-  					   </div>
-  					    <div class="row">
-                     <div class="col-md-11">
+		                      {{$Obrasobj->titulo}}
+		                   </div>
+  					   </div>  					   
+  					<div class="col-md-4">  					   
+  					   	{!!Form::label('autor','Autor:')!!}  					   
                      <div id="id_tipo-group" >
-                      <text > {{$Obrasobj->autor}}</text>
+                      {{$Obrasobj->autor}}
                    </div>
-                  </div>   	
-  					   </div>
-  					 </div >
-			       <div class="col-md-4">
-               <div class="row">
-                {!!Form::label('editorial','Editorial:')!!}
-               </div>
-                <div class="row">
-                    <div class="col-md-11">
+                  </div>  					
+			       <div class="col-md-4">              
+                {!!Form::label('editorial','Editorial:')!!}             
                      <div id="editorial-group" >
-                      <text > {{$Obrasobj->editorial}}</text>
+                      {{$Obrasobj->editorial}}
                    </div>
-                  </div>
-               </div>
              </div >  
 			</div>
 			</div> 	
 
-
 	 <div class="form-group">
-        	<div class="row">
-        	        
+        	<div class="row">        	        
   					<div class="col-md-4">
-  					   <div class="row">
   					   	{!!Form::label('fecha_registro','Fecha Registro:')!!}
-  					   </div>
-  					    <div class="row">
-  					    	<div class="col-md-11">
   					   	    <div id="fecha_registro-group" >
-                      <text > {{$Obrasobj->fecha_registro}}</text>
+                      {{$Obrasobj->fecha_registro}}
                    </div>
   					   </div>
-  					   </div>
-  					 </div >
-
              <div class="col-md-4">
-               <div class="row">
                 {!!Form::label('fecha_publicacion','Fecha Pucblicacion:')!!}
-               </div>
-                <div class="row">
-                <div class="col-md-11">
                     <div id="fecha_publicacion-group" >
-                      <text > {{$Obrasobj->fecha_publicacion}}</text>
+                     {{$Obrasobj->fecha_publicacion}}
                    </div>
                </div>
-             </div >
-             </div>
   					<div class="col-md-4">
-  					   <div class="row">
   					   	{!!Form::label('numeros_paginas','Numero Pagina:')!!}
-  					   </div>
-  					    <div class="row">
-                <div class="col-md-11">
 	                 <div id="numeros_paginas-group" >
-                      <text > {{$Obrasobj->numeros_paginas}}</text>
+                    {{$Obrasobj->numeros_paginas}}
                    </div>
                    </div>
-  					   </div>
-  					 </div >
-			        
 			</div>
 			</div>
          <div class="form-group">
-          <div class="row">
-                  
+          <div class="row">                  
               <div class="col-md-4">
-               <div class="row">
                 {!!Form::label('areas_idareas','Departamentos o Areas:')!!}
-               </div>
-                <div class="row">
-                  <div class="col-md-11">
                    <div id="id_tipo-group" >
-                     <text > {{$Obrasobj->ListaRelacionadaArea->nombre_area}}</text>
+                     {{$Obrasobj->ListaRelacionadaArea->nombre_area}}
                    </div>
                </div>
-               </div>
-             </div >
-
             <div class="col-md-4">
-               <div class="row">
                {!!Form::label('id_tipo','Tipo de Obra:')!!}
-               </div>
-                <div class="row">
-                     <div class="col-md-11">
                      <div id="id_tipo-group" >
-                        <text > {{$Obrasobj->ListaRelacionadaTipoObras->nombre_tipos_obras}}</text>
+                      {{$Obrasobj->ListaRelacionadaTipoObras->nombre_tipos_obras}}
                    </div>
                   </div>    
-               </div>
-             </div >
             <div class="col-md-4">
-               <div class="row">
                {!!Form::label('proveedor_idproveedor','Proveedor:')!!}
-               </div>
-                <div class="row">
-                <div class="col-md-11">
                    <div id="numeros_paginas-group" >
-                     <text > {{$Obrasobj->ListaRelacionadaProveedor->nombre_proveedor}}</text>
+					 {{$Obrasobj->ListaRelacionadaProveedor->nombre_proveedor}}
                    </div>
-                   </div>
-               </div>
-             </div >
-              
+                   </div>             
       </div>
       </div> 
 
       <div class="form-group">
-           <div class="row">
                 {!!Form::label('descripcion_obra','Breve Descripcion:')!!}
-           </div>
-            <div class="row">
-                    <div class="col-md-11">
                     <div id="descripcion_obra-group" >
-                      <text > {{$Obrasobj->descripcion_obra}}</text>
+                      {{$Obrasobj->descripcion_obra}}
                    </div>
                </div>
-              </div>
-      </div>
-
          </td>
        </tr>
      </tbody>
      </table>
 <table class="table">
   <thead>
-     <tr class="bg-info" style="background-color:#d3d3d3">
-        <th colspan="3">Isbn Almacenados de la Obra </th>
-
+     <tr>
+        <th colspan="3">ISBN Almacenados de la Obra </th>
      </tr>
      </thead>
      <tbody>
        <tr >
-         <td style="text-align:center;" class="col-md-6"> 
-               <img src="{{asset("imagenes/libros2.jpg")}}" alt=""  width="200" height="200"/>
+         <td style="text-align:center; width: 25%" > 
+               <img src="{{asset("imagenes/libros2.jpg")}}" alt=""  width="150" height="150"/>
          </td>
         <td>
-               <div class="col-md-4"> 
-                 
-               <table class="table table-striped" >
+                              
+               <table class="table table-striped table-bordered table-hover" >
                <thead  >
-            <tr class="bg-info" >
+            <tr >
               <th >Isbn</th>
               <th >Situación</th>
               <th >Estado</th>
@@ -205,21 +131,5 @@
        </tr>
      </tbody>
      </table>
-    <div class="modal-footer">
-    <table class="table ">
-        <tbody>
-                <tr>
-                    <td style="text-align: left;"><img src="{{asset("imagenes/inpc.png")}}" width="30%" /></td>
-
-                    <td >
-                     
-                         <a href="{{route('obrasRegistros.create')}}" class="btn btn-primary" ><i class="fa fa-times"></i> Cerrar</a
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-       </div>
-
-
+      <a href="{{route('obrasRegistros.create')}}" class="btn btn-info">Regresar</a>	
 @stop
