@@ -114,3 +114,12 @@
 	margin-bottom: 0px;
 }
 
+.rowListado{
+	display: block;
+    padding: 2px 0;
+    width: 100%;
+}
+
+.labelListado{
+	font-weight: bold;
+}

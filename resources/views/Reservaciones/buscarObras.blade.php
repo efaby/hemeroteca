@@ -25,7 +25,7 @@
 	</table>
 </div>
 </div>
-@if(count($listadoObras)>0)
+@if($resultado)
 <div class="row">
   	<div class="col-lg-12">
   	<p>Total {{count($listadoObras)}} Registros</p>
@@ -33,11 +33,11 @@
   		 @foreach ($listadoObras as $item)
          <tr>
            <td>
-           	<span>Título:</span>{{ $item->titulo }}
-           	<span>Autor:</span>{{ $item->autor }}
-           	<span>Editorial:</span>{{ $item->editorial }}
-           	<span>Area:</span>{{ $item->ListaRelacionadaArea()->nombre_area }}
-           	<span>Disponibilidad:</span>{{ $item->titulo }}
+           	<span class="rowListado"><span class="labelListado">Título:</span>{{ $item->titulo }}</span>
+           	<span class="rowListado"><span class="labelListado">Autor:</span>{{ $item->autor }}</span>
+           	<span class="rowListado"><span class="labelListado">Area:</span>{{ $item->ListaRelacionadaArea->nombre_area }}</span>
+           	<span class="rowListado"><span class="labelListado">Editorial:</span>{{ $item->editorial }}</span>           	
+           	<span class="rowListado"><span class="labelListado">Disponibilidad:</span>{{ $item->titulo }}</span>
            </td>          
          </tr>
          @endforeach

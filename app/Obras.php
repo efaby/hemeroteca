@@ -63,12 +63,12 @@ public function ListaRelacionadaTipoObras()
   	return $this->hasMany('Hemeroteca\ObraIsbn','obras_id')->where('estado_obras_id',1);
   }
 
-  static public function obtenerObras($textoBuscar,$filtros){
+  static public function scopeObtenerObras($query, $textoBuscar,$filtros){
   	
-  	$query = DB::table('obras');  
+  //	$query = DB::table('obras');  
   	
   	if(in_array('titulo', $filtros)){  		
-  		$query->orWhere('obras.titulo',"LIKE","%$textoBuscar%");
+  		$query->orWhere('titulo',"LIKE","%$textoBuscar%");
   	}
   	if(in_array('autor', $filtros)){
   		$query->orWhere('obras.autor',"LIKE","%$textoBuscar%");
@@ -78,8 +78,16 @@ public function ListaRelacionadaTipoObras()
   		$query->orWhere('areas.nombre_area',"LIKE","%$textoBuscar%");
   	}
   	if(in_array('isbn', $filtros)){
-  		$query->join('obras_isbn', 'obras.id', '=', 'obras_isbn.obras_id');
-  		$query->orWhere('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
+  		$query->join('obras_isbn', function($join,$textoBuscar)
+        {
+            $join->on('obras.id',  '=', 'obras_isbn.obras_id')
+                 ->where('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
+        });
+  				
+  				
+  				
+  			//	'=', )->andOn();
+  		//$query->orWhere('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
   	}
   	
   	return $query->get();

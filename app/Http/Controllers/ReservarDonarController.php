@@ -110,15 +110,15 @@ public function index()
     	$listadoObras = array();
     	$textoBuscar = null;
     	$filtros =  array('titulo');
+    	$resultado = false;
     	if ($request->isMethod('POST'))
     	{
     		$textoBuscar = $request->get('texto_buscar');
     		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');    		
-    		$listadoObras =  Obras::obtenerObras($textoBuscar,$filtros);  
-    		print_r($listadoObras);
-    		exit();
+    		$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);  
+    		$resultado = true;
     	}    	
-    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros'));
+    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado'));
     }
 
 }
