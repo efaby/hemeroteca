@@ -104,5 +104,21 @@ public function index()
         return view('Reservaciones.crearCliente');
 
     }
+    
+    public function buscarObra(Request $request){
+
+    	$listadoObras = array();
+    	$textoBuscar = null;
+    	$filtros =  array('titulo');
+    	if ($request->isMethod('POST'))
+    	{
+    		$textoBuscar = $request->get('texto_buscar');
+    		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');    		
+    		$listadoObras =  Obras::obtenerObras($textoBuscar,$filtros);  
+    		print_r($listadoObras);
+    		exit();
+    	}    	
+    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros'));
+    }
 
 }

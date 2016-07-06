@@ -27,6 +27,12 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
+	
+Route::match(['get', 'post'],'reservaciones/buscarObra', [
+		'as' => 'reservaciones.buscarObra', 
+		'uses' => 'ReservarDonarController@buscarObra'
+]);
+
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	
 Route::get('verArea','ObrasRegistroController@verarea');

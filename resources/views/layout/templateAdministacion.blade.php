@@ -67,7 +67,7 @@
                             <a href="#"><i class="fa fa-cubes  fa-fw"></i> Prestación y Donación<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="fa fa-edit  fa-fw"></i> Préstaciones de Obras</a>                                    
+                                    <a href="{{route('reservaciones.buscarObra')}}"><i class="fa fa-edit  fa-fw"></i> Préstaciones de Obras</a>                                    
                                 </li>
                                 <li>
                                     <a href="#"><i class="fa fa-book fa-fw"></i> Donaciones de Obras</a>                                    
