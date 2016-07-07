@@ -28,14 +28,20 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 	
-Route::match(['get', 'post'],'reservaciones/buscarObra', [
+Route::match(['get', 'post'],'reservaciones/{opcion}', [
 		'as' => 'reservaciones.buscarObra', 
 		'uses' => 'ReservarDonarController@buscarObra'
 ]);
-Route::get('reservaciones/reservar/{isbn}', [
-		'as' => 'reservaciones.reservar',
-		'uses' => 'ReservarDonarController@reservar'
+Route::get('reservaciones/prestacion/{isbn}', [
+		'as' => 'reservaciones.prestacion',
+		'uses' => 'ReservarDonarController@prestacion'
 ]);
+
+Route::get('reservaciones/donacion/{isbn}', [
+		'as' => 'reservaciones.donacion',
+		'uses' => 'ReservarDonarController@donacion'
+]);
+
 Route::match(['get', 'post'],'cliente/buscarCliente', [
 		'as' => 'cliente.buscarCliente',
 		'uses' => 'PerClienteController@buscarCliente'

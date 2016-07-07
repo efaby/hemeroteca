@@ -3,7 +3,7 @@
 
 <div class="row">
   	<div class="col-lg-12">
-		<h1 class="page-header">Buscar Obras</h1>
+		<h1 class="page-header">{{$titulo}} de Obras</h1>
 	</div>
 	<div class="col-lg-12">
 	
@@ -15,7 +15,7 @@
 								</div>
 	@endif
 	
-	{!!Form::open(['route'=>['reservaciones.buscarObra'],'method'=>'POST','role'=>'search']) !!}
+	{!!Form::open(['route'=>['reservaciones.buscarObra',$opcion],'method'=>'POST','role'=>'search']) !!}
       <table class="table">
         <tr>            
             <td> 
@@ -32,6 +32,7 @@
             <td> {!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}</td>
         </tr>      	
 	</table>
+	{!!Form::close()!!}
 </div>
 </div>
 @if($resultado)
@@ -49,7 +50,11 @@
            	<span class="rowListado"><span class="labelListado">Disponibilidad:</span>
            		@if(count($item->isbns)>0)
 	           		@foreach ($item->isbns as $isbn)
-	           			<a href="{{route('reservaciones.reservar', $isbn->id)}}" >{{$isbn->codigo_isbn}}</a>&nbsp
+	           			@if($opcion == 'buscar')
+	           				{{$isbn->codigo_isbn}}&nbsp
+	           			@else
+	           				<a href="{{route('reservaciones.'.$opcion, $isbn->id)}}" >{{$isbn->codigo_isbn}}</a>&nbsp
+	           			@endif
 	           		@endforeach
            		@else 
            			<span class="noDisponible">No disponible</span>
@@ -62,25 +67,5 @@
   	</div>
 </div>
 @endif
-      <!-- Modal Crear Cliente -->
-<div class="modal fade" id="crearReservacion" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" >    
-    <div class="modal-content">
-    </div>
-  </div>
-</div>
- <!-- Fin Modal Crear Cliente -->
-
-{!!Form::close()!!}
-
-<script type="text/javascript">
-
-$('document').ready(function(){
-
-	$(document.body).on('hidden.bs.modal', function () {
-	    $('#crearReservacion').removeData('bs.modal')
-	});
-	
-});
-</script>
+      
 @stop

@@ -3,7 +3,7 @@
 
 <div class="row">
   	<div class="col-lg-12">
-		<h1 class="page-header">Reservar Obra</h1>
+		<h1 class="page-header"> {{$titulo}} Obra</h1>
 	</div>
 	<div class="col-lg-12">
 @if($errors->has())
@@ -60,17 +60,22 @@
     	{!!Form::text('fecha_reservacion',$fechaActual,['class'=>'form-control','readonly'])!!}
     </div>  
     <div class="col-md-6">
+    @if($estado == 2)
        {!!Form::label('numeros_dias','Números de Dias')!!}
        {!!Form::text('numeros_dias',null,['class'=>'form-control'])!!}
+     @endif
      </div>  
      <div class="col-md-12">
      <br>
       	{!!Form::submit('Registro',['class'=>'btn btn-primary disabled', 'id'=>'btnGuardar'])!!} 
       	{!!Form::hidden('cliente_id',0,['id'=>'cliente_id'])!!}  
       	{!!Form::hidden('isbn_id',$obra->id,['id'=>'isbn_id'])!!}  
-      	{!!Form::hidden('estado',2,['id'=>'estado'])!!}    
+      	{!!Form::hidden('estado',$estado,['id'=>'estado'])!!}    
+      	@if($estado == 3)
+      		{!!Form::hidden('numeros_dias',1,['id'=>'numeros_dias'])!!}   
+      	@endif
       	&nbsp;
-      	 <a href="{{route('reservaciones.buscarObra')}}" class="btn btn-warning" >Cancelar</a>     
+      	 <a href="{{route('reservaciones.buscarObra',$opcion)}}" class="btn btn-warning" >Cancelar</a>     
       </div>
                  
     </div>
@@ -120,8 +125,7 @@ $('document').ready(function(){
     	
     });
 });
-
-
+  
   $("#frmGuardar").bootstrapValidator({
   	message: 'This value is not valid',	
 	fields: {			

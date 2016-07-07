@@ -58,7 +58,7 @@ public function index()
         $Isbnobj = ObraIsbn::find($request->get('isbn_id'));
         $Isbnobj->estado_obras_id=$request['estado'];
         $Isbnobj->save();
-        return redirect()->route('reservaciones.buscarObra')->with('mensaje', 'Reservacion registrada');
+        return redirect()->route('reservaciones.buscarObra',($request['estado']==2)?'prestacion':'donacion')->with('mensaje', ($request['estado']==2)?'Prestación registrada éxitosamente.':'Donación registrada éxitosamente.');
 
         }
 
@@ -96,30 +96,55 @@ public function index()
 
     }
     
-    public function buscarObra(Request $request){
+    public function buscarObra($opcion,Request $request){
 
     	$listadoObras = array();
-    	$textoBuscar = ($request->session()->has('textoBuscar'))?$request->session()->get('textoBuscar'):null;
-    	$filtros =  ($request->session()->has('filtros'))?$request->session()->get('filtros'):array('titulo');
+    	if($opcion=='prestacion'){
+    		$titulo = "Prestación";
+    	} else {
+    		if($opcion=='buscar'){
+    			$titulo = "Buscador";
+    		} else {
+    			$titulo = "Donación";
+    		}
+    	}
+
+    	$textoBuscar = ($request->session()->has($opcion.'textoBuscar'))?$request->session()->get($opcion.'textoBuscar'):null;
+    	$filtros =  ($request->session()->has($opcion.'filtros'))?$request->session()->get($opcion.'filtros'):array('titulo');
     	$resultado = false;
     	if ($request->isMethod('POST'))
     	{
     		$textoBuscar = $request->get('texto_buscar');
     		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');    		
-    		$request->session()->put('textoBuscar', $textoBuscar);
-    		$request->session()->put('filtros', $filtros);
+    		$request->session()->put($opcion.'textoBuscar', $textoBuscar);
+    		$request->session()->put($opcion.'filtros', $filtros);
     	} 
-    	$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);
-    	$resultado = true;
+    	if($textoBuscar!=''){
+    		$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);
+    		$resultado = true;
+    	}
+    	
     	$mensaje = $request->session()->get('mensaje');
-    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje'));
+    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje','opcion','titulo'));
     }
 
-    public function reservar($isbn){
+    public function prestacion($isbn){
     	$obra = ObraIsbn::find($isbn);
     	$fechaActual = Carbon::now();
     	$fechaActual=$fechaActual->toDateString();
-    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual'));
-    	
+    	$estado = 2;
+    	$titulo = "Prestar";
+    	$opcion = "prestacion";
+    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion'));    	
+    }
+    
+    public function donacion($isbn){
+    	$obra = ObraIsbn::find($isbn);
+    	$fechaActual = Carbon::now();
+    	$fechaActual=$fechaActual->toDateString();
+    	$estado = 3;
+    	$titulo = "Donar";
+    	$opcion = "donacion";
+    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion'));
     }
 }
