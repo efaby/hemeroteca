@@ -123,3 +123,11 @@
 .labelListado{
 	font-weight: bold;
 }
+
+.noDisponible{
+	color: red;
+}
+
+.help-block{
+	color: red;
+}

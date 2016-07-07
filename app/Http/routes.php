@@ -32,7 +32,14 @@ Route::match(['get', 'post'],'reservaciones/buscarObra', [
 		'as' => 'reservaciones.buscarObra', 
 		'uses' => 'ReservarDonarController@buscarObra'
 ]);
-
+Route::get('reservaciones/reservar/{isbn}', [
+		'as' => 'reservaciones.reservar',
+		'uses' => 'ReservarDonarController@reservar'
+]);
+Route::match(['get', 'post'],'cliente/buscarCliente', [
+		'as' => 'cliente.buscarCliente',
+		'uses' => 'PerClienteController@buscarCliente'
+]);
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	
 Route::get('verArea','ObrasRegistroController@verarea');

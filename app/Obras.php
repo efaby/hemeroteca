@@ -66,7 +66,7 @@ public function ListaRelacionadaTipoObras()
   static public function scopeObtenerObras($query, $textoBuscar,$filtros){
   	
   //	$query = DB::table('obras');  
-  	
+  	$query->distinct();
   	if(in_array('titulo', $filtros)){  		
   		$query->orWhere('titulo',"LIKE","%$textoBuscar%");
   	}
@@ -78,8 +78,11 @@ public function ListaRelacionadaTipoObras()
   		$query->orWhere('areas.nombre_area',"LIKE","%$textoBuscar%");
   	}
   	if(in_array('isbn', $filtros)){
-  		$query->join('obras_isbn', 'obras.id',  '=', 'obras_isbn.obras_id');  				
-  		$query->where('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
+  		$query->orWhereExists(function ($query)  use ($textoBuscar){
+                $query->from('obras_isbn')
+                      ->whereRaw("obras_isbn.codigo_isbn LIKE '%$textoBuscar%'")  
+                      ->whereRaw("obras_isbn.activo_pasivo = 'activo'");
+            });
   	}
   	
   	return $query->get();

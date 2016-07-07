@@ -6,6 +6,15 @@
 		<h1 class="page-header">Buscar Obras</h1>
 	</div>
 	<div class="col-lg-12">
+	
+	@if ($mensaje != '')
+		<div class="alert alert-success fade in alert-dismissable">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">&times;</button>
+								  {{ $mensaje }}
+								</div>
+	@endif
+	
 	{!!Form::open(['route'=>['reservaciones.buscarObra'],'method'=>'POST','role'=>'search']) !!}
       <table class="table">
         <tr>            
@@ -37,7 +46,15 @@
            	<span class="rowListado"><span class="labelListado">Autor:</span>{{ $item->autor }}</span>
            	<span class="rowListado"><span class="labelListado">Area:</span>{{ $item->ListaRelacionadaArea->nombre_area }}</span>
            	<span class="rowListado"><span class="labelListado">Editorial:</span>{{ $item->editorial }}</span>           	
-           	<span class="rowListado"><span class="labelListado">Disponibilidad:</span>{{ $item->titulo }}</span>
+           	<span class="rowListado"><span class="labelListado">Disponibilidad:</span>
+           		@if(count($item->isbns)>0)
+	           		@foreach ($item->isbns as $isbn)
+	           			<a href="{{route('reservaciones.reservar', $isbn->id)}}" >{{$isbn->codigo_isbn}}</a>&nbsp
+	           		@endforeach
+           		@else 
+           			<span class="noDisponible">No disponible</span>
+           		@endif
+           	</span>
            </td>          
          </tr>
          @endforeach
@@ -46,8 +63,8 @@
 </div>
 @endif
       <!-- Modal Crear Cliente -->
-<div class="modal fade" id="crearCliente" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">    
+<div class="modal fade" id="crearReservacion" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" >    
     <div class="modal-content">
     </div>
   </div>
@@ -56,4 +73,14 @@
 
 {!!Form::close()!!}
 
+<script type="text/javascript">
+
+$('document').ready(function(){
+
+	$(document.body).on('hidden.bs.modal', function () {
+	    $('#crearReservacion').removeData('bs.modal')
+	});
+	
+});
+</script>
 @stop

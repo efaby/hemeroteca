@@ -21,6 +21,7 @@
     {!!Html::script('js/fileinput.min.js')!!}
  {!!Html::script('js/bootstrapValidator.min.js')!!}
  {!!Html::script('js/jquery-ui.min.js')!!}
+ 
     {!!Html::style('css/styles.css')!!}
      {!!Html::style('css/jquery-ui.min.css')!!}
 

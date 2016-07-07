@@ -25,49 +25,40 @@ public function index()
     return view('Reservaciones.listarPrestaciones',compact('Prestacionesobj'));
 }
 
-	public function create(Request $request)
-	{
-        $libre=1;
-		$fechaActual = Carbon::now();
-        $fechaActual=$fechaActual->toDateString();
-        $TiposObrasobj = TipoObras::where('activo_pasivo', 'activo')->get();
-        $Clientesobj = Clientes::busquedacliente($request->get('cedula_cliente'))->clienteactivo()->get();    
-        $Isbnobj = ObraIsbn::busquedaisbn($request->get('codigo'))->isbnactivo()->isbnlibre($libre)->get();
-        $Clientesobjcount = Clientes::busquedacliente($request->get('cedula_cliente'))->clienteactivo()->count();
-        $Isbnobjcount = ObraIsbn::busquedaisbn($request->get('codigo'))->isbnactivo()->isbnlibre($libre)->count();
-        $numeros_dias=$request->get('numeros_dias');
-        if(($Clientesobjcount>=1)&&($Isbnobjcount>=1)&&($numeros_dias <>0))
-        {
-            return view ('Reservaciones.verVistaPrevia',compact('Clientesobj','fechaActual','TiposObrasobj','Isbnobj','numeros_dias'));
-        }
-        else
-        {
-            return view ('Reservaciones.prestacionesObras',compact('Clientesobj','fechaActual','TiposObrasobj','Isbnobj'));
-        }
-        
-	
+	public function create(Request $request){
+		
+		
+	}
 
 
-    }
-
-
-     public function store(Request $request)
-        {
-        $prestacion='prestada';
-        $estadoprestacion= 2;
+     public function store(Request $request){
+     	
+     	$v = \Validator::make($request->all(), [     	
+     			'numeros_dias' => 'required',
+     			'fecha_reservacion' => 'required',
+     			'estado'    => 'required',
+     			'isbn_id' => 'required',
+     			'cliente_id' => 'required'     			
+     	]);
+     	
+     	if ($v->fails())
+     	{
+     		return redirect()->back()->withInput()->withErrors($v->errors());
+     	}
+     	
     	ReservacionesDonaciones::create(
             [
              'fecha_reservacion'=> $request['fecha_reservacion'],
              'numeros_dias'=> $request['numeros_dias'],
-             'cliente_idcliente'=> $request['id_cliente'],
-             'prestacion_donacion'=>$prestacion,
-             'obras_isbn_idobras_isbn'=>$request['id_isbn'],
+             'cliente_idcliente'=> $request['cliente_id'],
+             'prestacion_donacion'=>($request['estado']==2)?'pres':'don',
+             'obras_isbn_idobras_isbn'=>$request['isbn_id'],
              ]);
 
-        $Isbnobj = ObraIsbn::find($request->get('id_isbn'));
-        $Isbnobj->estado_obras_id=$estadoprestacion;
+        $Isbnobj = ObraIsbn::find($request->get('isbn_id'));
+        $Isbnobj->estado_obras_id=$request['estado'];
         $Isbnobj->save();
-       
+        return redirect()->route('reservaciones.buscarObra')->with('mensaje', 'Reservacion registrada');
 
         }
 
@@ -108,17 +99,27 @@ public function index()
     public function buscarObra(Request $request){
 
     	$listadoObras = array();
-    	$textoBuscar = null;
-    	$filtros =  array('titulo');
+    	$textoBuscar = ($request->session()->has('textoBuscar'))?$request->session()->get('textoBuscar'):null;
+    	$filtros =  ($request->session()->has('filtros'))?$request->session()->get('filtros'):array('titulo');
     	$resultado = false;
     	if ($request->isMethod('POST'))
     	{
     		$textoBuscar = $request->get('texto_buscar');
     		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');    		
-    		$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);  
-    		$resultado = true;
-    	}    	
-    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado'));
+    		$request->session()->put('textoBuscar', $textoBuscar);
+    		$request->session()->put('filtros', $filtros);
+    	} 
+    	$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);
+    	$resultado = true;
+    	$mensaje = $request->session()->get('mensaje');
+    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje'));
     }
 
+    public function reservar($isbn){
+    	$obra = ObraIsbn::find($isbn);
+    	$fechaActual = Carbon::now();
+    	$fechaActual=$fechaActual->toDateString();
+    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual'));
+    	
+    }
 }

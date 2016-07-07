@@ -3,6 +3,7 @@
 namespace Hemeroteca\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use Hemeroteca\Http\Requests;
 use Hemeroteca\Http\Controllers\Controller;
@@ -118,8 +119,9 @@ class PerClienteController extends Controller
         return Redirect::to('/cliente');
     }
 
-    public function buscar()
+    public function buscarCliente(Request $request)
     {
-
+		$cliente  = Clientes::where('cedula_cliente',$request->get('cedula_cliente'))->first();
+		return response()->json( $cliente );
     }
 }
