@@ -78,16 +78,8 @@ public function ListaRelacionadaTipoObras()
   		$query->orWhere('areas.nombre_area',"LIKE","%$textoBuscar%");
   	}
   	if(in_array('isbn', $filtros)){
-  		$query->join('obras_isbn', function($join,$textoBuscar)
-        {
-            $join->on('obras.id',  '=', 'obras_isbn.obras_id')
-                 ->where('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
-        });
-  				
-  				
-  				
-  			//	'=', )->andOn();
-  		//$query->orWhere('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
+  		$query->join('obras_isbn', 'obras.id',  '=', 'obras_isbn.obras_id');  				
+  		$query->where('obras_isbn.codigo_isbn',"LIKE","%$textoBuscar%");
   	}
   	
   	return $query->get();
