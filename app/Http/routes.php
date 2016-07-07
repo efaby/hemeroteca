@@ -36,7 +36,6 @@ Route::get('reservaciones/prestacion/{isbn}', [
 		'as' => 'reservaciones.prestacion',
 		'uses' => 'ReservarDonarController@prestacion'
 ]);
-
 Route::get('reservaciones/donacion/{isbn}', [
 		'as' => 'reservaciones.donacion',
 		'uses' => 'ReservarDonarController@donacion'
@@ -45,6 +44,10 @@ Route::get('reservaciones/donacion/{isbn}', [
 Route::match(['get', 'post'],'cliente/buscarCliente', [
 		'as' => 'cliente.buscarCliente',
 		'uses' => 'PerClienteController@buscarCliente'
+]);
+Route::get('reservaciones/obra/{id}', [
+		'as' => 'reservaciones.verObra',
+		'uses' => 'ReservarDonarController@mostrarObra'
 ]);
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	

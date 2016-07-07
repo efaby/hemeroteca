@@ -47,7 +47,7 @@ class ObrasRegistroController extends Controller
     {
         //$Isbnobj = ObraIsbn::where('estado_obras_id',$estadoprestado )->where('codigo_isbn',$isbn)->get(); 
           $Obrasobj=Obras::find($id);
-         $ObrasIsbnObj=ObraIsbn::where('obras_id',$id)->get();
+          $ObrasIsbnObj=ObraIsbn::where('obras_id',$id)->get();
           return view ('Obras.MostrarInformacionObra',compact('Obrasobj','ObrasIsbnObj'));
 
     }

@@ -67,7 +67,7 @@
 		@if($Clientesobj->genero == 'M')
 		Masculino
 		 @else 
-		Femenido
+		Femenino
 		 @endif 
 	</div> 
 </div>

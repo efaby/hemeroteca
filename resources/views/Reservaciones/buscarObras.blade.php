@@ -43,7 +43,13 @@
   		 @foreach ($listadoObras as $item)
          <tr>
            <td>
-           	<span class="rowListado"><span class="labelListado">Título:</span>{{ $item->titulo }}</span>
+           	<span class="rowListado"><span class="labelListado">Título:</span>
+	           	@if($opcion == 'buscar')
+	           		<a href="{{route('reservaciones.verObra',$item->id)}}" data-toggle="modal" data-target="#mostrarObra" >{{ $item->titulo }}</a>
+	           	@else
+	           		{{ $item->titulo }}
+	           	@endif
+           	</span>
            	<span class="rowListado"><span class="labelListado">Autor:</span>{{ $item->autor }}</span>
            	<span class="rowListado"><span class="labelListado">Area:</span>{{ $item->ListaRelacionadaArea->nombre_area }}</span>
            	<span class="rowListado"><span class="labelListado">Editorial:</span>{{ $item->editorial }}</span>           	
@@ -67,5 +73,10 @@
   	</div>
 </div>
 @endif
-      
+  <div class="modal fade" id="mostrarObra" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">    
+    <div class="modal-content">
+    </div>
+  </div>
+</div> 
 @stop

@@ -115,7 +115,7 @@ $('document').ready(function(){
             	alert('no existe usuario');
             	$("#btnGuardar").addClass('disabled');
             } else {
-            	$("#nombre").empty().html(response.nombre_cliente);
+            	$("#nombre").empty().html(response.nombre_cliente + ' ' +response.apellido_cliente);
             	$("#cedula").empty().html(response.cedula_cliente);
             	$("#email").empty().html(response.email_cliente);
             	$("#direccion").empty().html(response.direccion_cliente);

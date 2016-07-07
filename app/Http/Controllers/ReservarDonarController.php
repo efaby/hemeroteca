@@ -147,4 +147,9 @@ public function index()
     	$opcion = "donacion";
     	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion'));
     }
+    
+    public function mostrarObra($id){
+    	$Obrasobj=Obras::find($id);    	
+    	return view ('Reservaciones.mostrarObra',compact('Obrasobj'));
+    }
 }

@@ -40,7 +40,7 @@
 	</div>
 </div>
 <div class="col-md-6" style="text-align: center;">
-	<img src="imagenes/cliente.jpg" alt=""
+	<img src="{{asset("imagenes/cliente.jpg")}}" alt="cliente"
 	width="150" />
 </div>
 <div class="col-md-12" style="padding: 0px;">
@@ -81,7 +81,7 @@
 	{!!Form::label('genero','Género')!!}
 	<div id="genero-group"
 		class="form-group {!! $errors->has('genero') ? 'has-error' : '' !!}">
-		{!! Form::select('genero',['placeholder'=>'----seleccione una opcion----','M' => 'Masculino','F' => 'Femenino'])!!}
+		{!! Form::select('genero',[''=>'----seleccione una opcion----','M' => 'Masculino','F' => 'Femenino'])!!}
 		<div class="help-text"></div>
 	</div> 
 </div>
@@ -89,7 +89,7 @@
 	{!!Form::label('activo_pasivo','Estado')!!}
 	<div id="activo_pasivo-group"
 		class="form-group {!! $errors->has('activo_pasivo') ? 'has-error' : '' !!}">
-		{!! Form::select('activo_pasivo',['placeholder'=>'---seleccione	opción---','activo' => 'Activo','pasivo' => 'Pasivo'])!!}
+		{!! Form::select('activo_pasivo',[''=>'---seleccione opción---','activo' => 'Activo','pasivo' => 'Pasivo'])!!}
 		<div class="help-text"></div>
 	</div>
 </div>
