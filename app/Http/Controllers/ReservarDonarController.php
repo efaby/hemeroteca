@@ -46,6 +46,8 @@ public function index()
      		return redirect()->back()->withInput()->withErrors($v->errors());
      	}
      	
+     	$fechaDevoucion = date("Y-m-d", strtotime($request['fecha_reservacion'] ." + ". $request['numeros_dias']." days"));
+     	
     	ReservacionesDonaciones::create(
             [
              'fecha_reservacion'=> $request['fecha_reservacion'],
@@ -53,6 +55,8 @@ public function index()
              'cliente_idcliente'=> $request['cliente_id'],
              'prestacion_donacion'=>($request['estado']==2)?'pres':'don',
              'obras_isbn_idobras_isbn'=>$request['isbn_id'],
+             'activo'=>1,
+             'fecha_devolucion' => $fechaDevoucion
              ]);
 
         $Isbnobj = ObraIsbn::find($request->get('isbn_id'));
@@ -152,4 +156,39 @@ public function index()
     	$Obrasobj=Obras::find($id);    	
     	return view ('Reservaciones.mostrarObra',compact('Obrasobj'));
     }
+    
+    public function devolucionObra(Request $request){
+    	
+    	$textoBuscar =null;
+    	$listadoObras = array();
+    	$resultado = false;
+    	$fechaInicio = Carbon::now();
+    	$fechaInicio= $fechaFin = $fechaInicio->toDateString();
+    	if ($request->isMethod('POST'))
+    	{
+    		$textoBuscar = $request->get('texto_buscar');
+    		$fechaInicio = $request->get('fecha_inicio');
+    		$fechaFin = $request->get('fecha_fin');  		
+    		$listadoObras =  ReservacionesDonaciones::ObtenerObras($textoBuscar,$fechaInicio,$fechaFin);	    		
+    		$resultado = true;
+    	}     	 
+    	$mensaje = $request->session()->get('mensaje');
+    	return view ('Reservaciones.devolucionObras',compact('listadoObras','textoBuscar','resultado','mensaje','fechaInicio', 'fechaFin'));
+    	}
+    	
+    	public function devolverObra(Request $request){
+    		
+    		$prestacion = ReservacionesDonaciones::find($request->get('id'));
+    		$prestacion->activo = 0;
+    		$prestacion->fecha_registro_devolucion = date('Y-m-d');
+    		$prestacion->save();  
+    		
+    		$Isbnobj = ObraIsbn::find($prestacion->obras_isbn_idobras_isbn);
+    		$Isbnobj->estado_obras_id=1;
+    		$Isbnobj->save();
+
+    		return redirect()->route('reservaciones.devolucionObra')->with('mensaje', 'Devolución registrada éxitosamente.');
+    		
+    	
+    	}
 }

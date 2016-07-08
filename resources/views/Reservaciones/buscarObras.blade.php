@@ -15,11 +15,11 @@
 								</div>
 	@endif
 	
-	{!!Form::open(['route'=>['reservaciones.buscarObra',$opcion],'method'=>'POST','role'=>'search']) !!}
+	{!!Form::open(['route'=>['reservaciones.buscarObra',$opcion],'method'=>'POST','role'=>'search', 'id'=>'frmBuscar']) !!}
       <table class="table">
         <tr>            
             <td> 
-            	{!!Form::text('texto_buscar',$textoBuscar,['class'=>'form-control','placeholder'=>'Titulo - Autor - ISBN'])!!}
+            	{!!Form::text('texto_buscar',$textoBuscar,['id'=>'texto_buscar','class'=>'form-control','placeholder'=>'Titulo - Autor - ISBN'])!!}
             	<table style="margin-top: 5px; width: 40%;">
             	<tr>
             		<td>{!!Form::checkbox('filtro[]', 'titulo', in_array('titulo', $filtros))!!} {!!Form::label('filtro', 'Título')!!}</td>
@@ -29,7 +29,11 @@
             	</tr>
             	</table>       		
             </td>
-            <td> {!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}</td>
+            <td> {!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
+            	<button type="button" class="btn btn-warning" title="Resetear" id="clear-search-button">
+					<i class="fa fa-times"></i>
+				</button>
+            </td>
         </tr>      	
 	</table>
 	{!!Form::close()!!}
@@ -79,4 +83,12 @@
     </div>
   </div>
 </div> 
+<script type="text/javascript">
+jQuery(document).ready(function () {
+jQuery('#clear-search-button').on('click', function () {
+	jQuery('#texto_buscar').val('');
+	jQuery('#frmBuscar').submit();
+});
+});
+</script>
 @stop

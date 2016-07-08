@@ -74,7 +74,7 @@
                                     <a href="{{route('reservaciones.buscarObra','donacion')}}"><i class="fa fa-book fa-fw"></i> Donaciones de Obras</a>                                    
                                 </li>
                                 <li>
-                                    <a href="#"><i class='fa fa-edit'></i> Devoluciones Obras</a>
+                                    <a href="{{route('reservaciones.devolucionObra')}}"><i class='fa fa-edit'></i> Devoluciones Obras</a>
                                 </li>
                                
                             </ul>

@@ -28,6 +28,15 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 	
+Route::match(['get', 'post'],'reservaciones/devolucion', [
+		'as' => 'reservaciones.devolucionObra',
+		'uses' => 'ReservarDonarController@devolucionObra'
+]);
+
+Route::post('reservaciones/devolucion/devolver', [
+		'as' => 'reservaciones.devolverObra',
+		'uses' => 'ReservarDonarController@devolverObra'
+]);
 Route::match(['get', 'post'],'reservaciones/{opcion}', [
 		'as' => 'reservaciones.buscarObra', 
 		'uses' => 'ReservarDonarController@buscarObra'
