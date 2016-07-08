@@ -2,10 +2,10 @@
 
 namespace Hemeroteca\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Hemeroteca\Http\Requests;
 use Hemeroteca\Http\Controllers\Controller;
+use Hemeroteca\Clientes;
+Use Hemeroteca\ReservacionesDonaciones;
+
 
 class administracionController extends Controller
 {
@@ -16,7 +16,11 @@ class administracionController extends Controller
      */
     public function index()
     {
-        return view('pg_Administracion');
+    	$clientes = Clientes::where('activo_pasivo','activo')->count();
+    	$prestaciones = ReservacionesDonaciones::where('prestacion_donacion','pres')->where('activo',0)->count();
+    	$donaciones = ReservacionesDonaciones::where('prestacion_donacion','don')->count();
+    	$devoluciones = ReservacionesDonaciones::where('fecha_devolucion',date('Y-m-d'))->where('activo',0)->count();
+        return view('pg_Administracion',compact('clientes','prestaciones','donaciones','devoluciones'));
     }
 
 }

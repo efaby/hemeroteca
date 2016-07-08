@@ -64,6 +64,9 @@
             <div class="navbar-default sidebar" role="navigation" style="background-color: #f5f5f5">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu" >
+                    <li>
+                            <a href="{{route('principal.index')}}"><i class="fa fa-dashboard  fa-fw"></i> Inicio</a>
+                            </li>
                      <li>
                             <a href="#"><i class="fa fa-cubes  fa-fw"></i> Prestación y Donación<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
