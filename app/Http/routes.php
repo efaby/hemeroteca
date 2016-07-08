@@ -27,12 +27,15 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-	
+
+Route::post('postLogin', [
+		'as' => 'seguridad.postLogin',
+		'uses' => 'SeguridadController@postLogin'
+]);	
 Route::match(['get', 'post'],'reservaciones/devolucion', [
 		'as' => 'reservaciones.devolucionObra',
 		'uses' => 'ReservarDonarController@devolucionObra'
 ]);
-
 Route::post('reservaciones/devolucion/devolver', [
 		'as' => 'reservaciones.devolverObra',
 		'uses' => 'ReservarDonarController@devolverObra'
@@ -67,7 +70,7 @@ Route::get('verProveedor','ObrasRegistroController@verproveedor');
 Route::get('verisbn','IsbnController@verIsbn');
 Route::get('vercliente','ReservarDonarController@vercliente');
 Route::get('vistaPrevia','ReservarDonarController@vistaPrevia');
-Route::resource('login','loginController');
+
 Route::resource('principal','administracionController');
 Route::resource('tipoUsuario','CatTipoUsuarioController');
 Route::resource('tipoObra','CatTipoObrasController');

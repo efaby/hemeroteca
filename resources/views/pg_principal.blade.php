@@ -11,8 +11,11 @@
      {!!Html::style('css/bootstrap.min.css')!!}
      {!!Html::style('css/full-slider.css')!!}
       {!!Html::style('css/styles.css')!!}
-
-</head>
+      
+      {!!Html::script('js/jquery.js')!!}
+{!!Html::script('js/bootstrap.min.js')!!}
+{!!Html::script('js/bootstrapValidator.min.js')!!}
+      </head>
 
 <body>
 <div class="top-navbar">
@@ -112,12 +115,16 @@
           <h1 class="text-center" >Acceso al Sistema</h1>
       </div>
       <div class="modal-body">
-          <form class="form col-md-12 center-block">
+      
+          <form class="form col-md-12 center-block" id="frmLogin" action="{{route('seguridad.postLogin')}}" method="post">
+          	<div class="alert alert-danger fade in alert-dismissable" style="display: none; padding: 6px;" id="mensajeContenedor">
+				<span id="mensajeLogin"></span>
+			</div>
             <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Email">
+              <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Usuario">
             </div>
             <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Password">
+              <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Contraseña">
             </div>
             <div class="form-group">
               <button class="btn btn-success ">
@@ -129,6 +136,54 @@
       <div class="modal-footer">
             
       </div>
+      <script type="text/javascript">
+			$(document).ready(function(){
+				$('#frmLogin').bootstrapValidator({
+						message: 'This value is not valid',
+						feedbackIcons: {
+							validating: 'glyphicon glyphicon-refresh'
+						},
+								fields: {			
+									username: {
+										message: 'El Usuario no es válido',
+										validators: {
+													notEmpty: {
+														message: 'El Usuario no puede ser vacío.'
+													},					
+													regexp: {
+														regexp: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9-_ \.]+$/,
+														message: 'Ingrese un Usuario válido.'
+													}
+												}
+											},	
+									password: {
+										message: 'La Contraseña no es válida',
+										validators: {
+											notEmpty: {
+												message: 'La Contraseña no puede ser vacía.'
+											},					
+											regexp: {
+												regexp: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9-_ \.]+$/,
+												message: 'Ingrese una Contraseña válida.'
+											}
+										}
+									},
+													
+									
+								},
+								 submitHandler: function(validator, form, submitButton) {
+									 alert('paso');
+									 $.post(form.attr('action'), form.serialize(), function(result) {
+										 $("#mensajeLogin").html(result);
+								     	 $("#mensajeContenedor").css('display','block');
+									 }, 'json');					   
+								 }
+							});
+
+
+						
+						});		
+						</script>	
   </div>
   </div>
 </div>
@@ -174,10 +229,6 @@
 </div>
 <!--Informativo modal-->
 
-
-
-{!!Html::script('js/jquery.js')!!}
-{!!Html::script('js/bootstrap.min.js')!!}
     <script>
     $('.carousel').carousel({
         interval: 2000 //changes the speed
