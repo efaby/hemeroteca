@@ -78,7 +78,7 @@
 					<h3 style="">Presione los siguientes enlaces para acceder al sistema.</h3>
 					<div class="clear"></div>
 					<button data-target="#loginModal" data-toggle="modal" class="btn btn-lg btn-success btn-learn-more">Iniciar Sesión</button>
-					<a class="btn btn-lg btn-primary btn-learn-more" href="views/Registro/index.php">Consultar Obra</a>
+					<a class="btn btn-lg btn-primary btn-learn-more" href="{{route('reservaciones.buscarObra','buscar')}}" target="_blank">Buscar Obra</a>
 				</div>
 				<!-- /.container -->
 			</div>

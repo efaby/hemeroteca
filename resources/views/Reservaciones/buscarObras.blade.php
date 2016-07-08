@@ -1,4 +1,6 @@
- @extends ('layout.templateAdministacion')
+
+ 	 @extends ('layout.'.$template)
+
  @section('content')
 
 <div class="row">

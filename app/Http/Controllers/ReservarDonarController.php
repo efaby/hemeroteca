@@ -101,13 +101,14 @@ public function index()
     }
     
     public function buscarObra($opcion,Request $request){
-
+    	$template = "templateAdministacion";
     	$listadoObras = array();
     	if($opcion=='prestacion'){
     		$titulo = "Prestación";
     	} else {
     		if($opcion=='buscar'){
     			$titulo = "Buscador";
+    			$template = "templatePublico";
     		} else {
     			$titulo = "Donación";
     		}
@@ -129,7 +130,7 @@ public function index()
     	}
     	
     	$mensaje = $request->session()->get('mensaje');
-    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje','opcion','titulo'));
+    	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje','opcion','titulo','template'));
     }
 
     public function prestacion($isbn){
