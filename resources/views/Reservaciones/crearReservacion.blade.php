@@ -14,13 +14,19 @@
             </div>
         @endif </br> 
 <span class="rowListado"><span class="labelListado">Título:</span>{{
-				$obra->isbnObras->titulo }}</span> <span class="rowListado"><span
-				class="labelListado">Autor:</span>{{ $obra->isbnObras->autor }}</span>
+				$obra->titulo }}</span> <span class="rowListado"><span
+				class="labelListado">Autor:</span>{{ $obra->autor }}</span>
 			<span class="rowListado"><span class="labelListado">Area:</span>{{
-				$obra->isbnObras->ListaRelacionadaArea->nombre_area }}</span> <span
+				$obra->ListaRelacionadaArea->nombre_area }}</span> <span
 			class="rowListado"><span class="labelListado">Editorial:</span>{{
-				$obra->isbnObras->editorial }}</span> <span class="rowListado"><span
-				class="labelListado">ISBN:</span>{{$obra->codigo_isbn}}</span></td>
+				$obra->editorial }}</span> <span class="rowListado"><span
+				class="labelListado">ISBN:</span>				
+				@foreach ($obra->isbns as $isbn)
+	           			@if(in_array($isbn->id,$isbns))
+	           				{{$isbn->codigo_isbn}}&nbsp 
+	           			@endif
+	           	@endforeach
+				</span></td>
 {!!Form::open(['route'=>'cliente.buscarCliente', 'method'=>'POST', 'id' =>
 'frmBuscar'], array('class'=>'ajax'))!!}
 <table class="table ">
@@ -56,7 +62,11 @@
 'frmGuardar'], array('class'=>'ajax'))!!}
 	<div class="row">
     <div class="col-md-6">
-       {!!Form::label('fecha_reservacion','Fecha Préstamo')!!}  
+    @if($estado == 3)
+       {!!Form::label('fecha_reservacion','Fecha Donación')!!}
+       @else
+       {!!Form::label('fecha_reservacion','Fecha Préstamo')!!}
+       @endif
     	{!!Form::text('fecha_reservacion',$fechaActual,['class'=>'form-control','readonly'])!!}
     </div>  
     <div class="col-md-6">
@@ -69,7 +79,9 @@
      <br>
       	{!!Form::submit('Registro',['class'=>'btn btn-primary disabled', 'id'=>'btnGuardar'])!!} 
       	{!!Form::hidden('cliente_id',0,['id'=>'cliente_id'])!!}  
-      	{!!Form::hidden('isbn_id',$obra->id,['id'=>'isbn_id'])!!}  
+      	@foreach($isbns as $item)
+      		{!!Form::hidden('isbns[]',$item,['id'=>'isbns[]'])!!}  
+      	@endforeach
       	{!!Form::hidden('estado',$estado,['id'=>'estado'])!!}    
       	@if($estado == 3)
       		{!!Form::hidden('numeros_dias',1,['id'=>'numeros_dias'])!!}   
@@ -114,6 +126,11 @@ $('document').ready(function(){
             if(response.id === undefined){
             	alert('no existe usuario');
             	$("#btnGuardar").addClass('disabled');
+            	$("#nombre").empty();
+            	$("#cedula").empty();
+            	$("#email").empty();
+            	$("#direccion").empty();
+            	$("#cliente_id").val(0);
             } else {
             	$("#nombre").empty().html(response.nombre_cliente + ' ' +response.apellido_cliente);
             	$("#cedula").empty().html(response.cedula_cliente);

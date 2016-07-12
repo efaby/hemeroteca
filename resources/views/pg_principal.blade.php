@@ -129,7 +129,7 @@
             <div class="form-group">
               <button class="btn btn-success ">
               	<i class="fa fa-sign-in"></i>Ingresar</button>
-              <span><a href="#">Olvide Contraseña..</a></span>
+              
             </div>
           </form>
       </div>

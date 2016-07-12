@@ -19,7 +19,7 @@ class administracionController extends Controller
     	$clientes = Clientes::where('activo_pasivo','activo')->count();
     	$prestaciones = ReservacionesDonaciones::where('prestacion_donacion','pres')->where('activo',0)->count();
     	$donaciones = ReservacionesDonaciones::where('prestacion_donacion','don')->count();
-    	$devoluciones = ReservacionesDonaciones::where('fecha_devolucion',date('Y-m-d'))->where('activo',0)->count();
+    	$devoluciones = ReservacionesDonaciones::where('fecha_devolucion',date('Y-m-d'))->where('activo',1)->count();
         return view('pg_Administracion',compact('clientes','prestaciones','donaciones','devoluciones'));
     }
 

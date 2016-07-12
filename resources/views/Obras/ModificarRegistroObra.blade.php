@@ -55,4 +55,16 @@
 
 
 {!!Form::close()!!}
+
+<script type="text/javascript">
+
+    $('document').ready(function(){
+
+    	$( "#fecha_publicacion" ).datepicker({  
+    		dateFormat: "yy-mm-dd"  		
+    	});
+    });
+</script>
+
+
 @stop

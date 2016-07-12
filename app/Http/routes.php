@@ -44,11 +44,11 @@ Route::match(['get', 'post'],'reservaciones/{opcion}', [
 		'as' => 'reservaciones.buscarObra', 
 		'uses' => 'ReservarDonarController@buscarObra'
 ]);
-Route::get('reservaciones/prestacion/{isbn}', [
+Route::post('reservaciones/prestacion/{obra}', [
 		'as' => 'reservaciones.prestacion',
 		'uses' => 'ReservarDonarController@prestacion'
 ]);
-Route::get('reservaciones/donacion/{isbn}', [
+Route::post('reservaciones/donacion/{obra}', [
 		'as' => 'reservaciones.donacion',
 		'uses' => 'ReservarDonarController@donacion'
 ]);

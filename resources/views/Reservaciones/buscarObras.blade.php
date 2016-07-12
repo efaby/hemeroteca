@@ -59,15 +59,26 @@
            	<span class="rowListado"><span class="labelListado">Autor:</span>{{ $item->autor }}</span>
            	<span class="rowListado"><span class="labelListado">Area:</span>{{ $item->ListaRelacionadaArea->nombre_area }}</span>
            	<span class="rowListado"><span class="labelListado">Editorial:</span>{{ $item->editorial }}</span>           	
-           	<span class="rowListado"><span class="labelListado">Disponibilidad:</span>
+           	<span class="rowListado"><span class="labelListado" style="float: left; padding-right: 5px;">Disponibilidad:</span>
            		@if(count($item->isbns)>0)
+           			{!!Form::open(['route'=>['reservaciones.'.$opcion,$item->id],'method'=>'POST','role'=>'search', 'id'=>'frmGuardar'.$item->id]) !!}
 	           		@foreach ($item->isbns as $isbn)
 	           			@if($opcion == 'buscar')
-	           				{{$isbn->codigo_isbn}}&nbsp
+	           				{{$isbn->codigo_isbn}}&nbsp  
 	           			@else
-	           				<a href="{{route('reservaciones.'.$opcion, $isbn->id)}}" >{{$isbn->codigo_isbn}}</a>&nbsp
+	           				<input type="checkbox" name="isbns{{$item->id}}[]" id="isbns{{$item->id}}" value="{{$isbn->id}}"> {{$isbn->codigo_isbn}} &nbsp;
+	           					{!!Form::hidden('id',$item->id,['id'=>'id'])!!}  
 	           			@endif
 	           		@endforeach
+	           		
+	           		<a href="javascript:accion({{$item->id}})" 
+	          			class="btn btn-xs btn-success btn-outline" >
+	          			@if($opcion == 'prestacion')
+	          			Prestar
+	          			@else
+	          			Donar
+	          			@endif</a>	 
+	          		{!!Form::close()!!}
            		@else 
            			<span class="noDisponible">No disponible</span>
            		@endif
@@ -78,6 +89,8 @@
   	</table>
   	</div>
 </div>
+
+
 @endif
   <div class="modal fade" id="mostrarObra" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">    
@@ -92,5 +105,15 @@ jQuery('#clear-search-button').on('click', function () {
 	jQuery('#frmBuscar').submit();
 });
 });
+
+function accion(id){
+
+	if ($('input[name="isbns'+id+'[]"]:checked').length === 0) {
+	  alert('Debe almenos selecionar un ISBN de la Obra');
+	} else {
+		jQuery('#frmGuardar'+id).submit();
+	}
+		
+}
 </script>
 @stop

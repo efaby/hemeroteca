@@ -37,7 +37,6 @@ public function index()
      			'numeros_dias' => 'required',
      			'fecha_reservacion' => 'required',
      			'estado'    => 'required',
-     			'isbn_id' => 'required',
      			'cliente_id' => 'required'     			
      	]);
      	
@@ -48,20 +47,23 @@ public function index()
      	
      	$fechaDevoucion = date("Y-m-d", strtotime($request['fecha_reservacion'] ." + ". $request['numeros_dias']." days"));
      	
+     	
+     	foreach ($request['isbns'] as $item){
     	ReservacionesDonaciones::create(
             [
              'fecha_reservacion'=> $request['fecha_reservacion'],
              'numeros_dias'=> $request['numeros_dias'],
              'cliente_idcliente'=> $request['cliente_id'],
              'prestacion_donacion'=>($request['estado']==2)?'pres':'don',
-             'obras_isbn_idobras_isbn'=>$request['isbn_id'],
+             'obras_isbn_idobras_isbn'=>$item,
              'activo'=>1,
              'fecha_devolucion' => $fechaDevoucion
              ]);
 
-        $Isbnobj = ObraIsbn::find($request->get('isbn_id'));
+        $Isbnobj = ObraIsbn::find($item);
         $Isbnobj->estado_obras_id=$request['estado'];
         $Isbnobj->save();
+     	}
         return redirect()->route('reservaciones.buscarObra',($request['estado']==2)?'prestacion':'donacion')->with('mensaje', ($request['estado']==2)?'Prestación registrada éxitosamente.':'Donación registrada éxitosamente.');
 
         }
@@ -133,24 +135,26 @@ public function index()
     	return view ('Reservaciones.buscarObras',compact('listadoObras','textoBuscar','filtros','resultado','mensaje','opcion','titulo','template'));
     }
 
-    public function prestacion($isbn){
-    	$obra = ObraIsbn::find($isbn);
+    public function prestacion($obra,Request $request){    	
+    	$isbns = $request->get('isbns'.$obra);
+    	$obra = Obras::find($obra);
     	$fechaActual = Carbon::now();
     	$fechaActual=$fechaActual->toDateString();
     	$estado = 2;
     	$titulo = "Prestar";
     	$opcion = "prestacion";
-    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion'));    	
+    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion','isbns'));    	
     }
     
-    public function donacion($isbn){
-    	$obra = ObraIsbn::find($isbn);
+    public function donacion($obra,Request $request){    	
+    	$isbns = $request->get('isbns'.$obra);
+    	$obra = Obras::find($obra);
     	$fechaActual = Carbon::now();
     	$fechaActual=$fechaActual->toDateString();
     	$estado = 3;
     	$titulo = "Donar";
     	$opcion = "donacion";
-    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion'));
+    	return view('Reservaciones.crearReservacion',compact('obra','fechaActual','estado','titulo','opcion','isbns'));
     }
     
     public function mostrarObra($id){
