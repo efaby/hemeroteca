@@ -12,6 +12,7 @@ use Hemeroteca\Usuarios;
 use Hemeroteca\TipoUsuario;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Hash;
 
 class PerUsuarioController extends Controller
 {
@@ -100,7 +101,16 @@ class PerUsuarioController extends Controller
     public function update(usuarioEditarRequest $request, $id)
     {
         $Usuariosobj = Usuarios::find($id);
-        $Usuariosobj->fill($request->all());
+        $Usuariosobj->nombre = $request->get('nombre');
+        $Usuariosobj->Apellido = $request->get('Apellido');
+        $Usuariosobj->username = $request->get('username');
+        $Usuariosobj->password = Hash::make($request->get('password'));
+        $Usuariosobj->email = $request->get('email');
+        $Usuariosobj->direccion = $request->get('direccion');
+        $Usuariosobj->cedula = $request->get('cedula');
+        $Usuariosobj->tipo_usuario_idtipo_usuario = $request->get('tipo_usuario_idtipo_usuario');
+        $Usuariosobj->activo_pasivo = $request->get('activo_pasivo');
+      //  $Usuariosobj->fill($request->all());
         $Usuariosobj->save();
         return redirect('usuario');
     }

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
      {!!Html::style('css/bootstrap.min.css')!!}
      {!!Html::style('css/full-slider.css')!!}
       {!!Html::style('css/styles.css')!!}
@@ -129,6 +130,7 @@
             <div class="form-group">
               <button class="btn btn-success ">
               	<i class="fa fa-sign-in"></i>Ingresar</button>
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
               
             </div>
           </form>
@@ -137,6 +139,11 @@
             
       </div>
       <script type="text/javascript">
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+        });
 			$(document).ready(function(){
 				$('#frmLogin').bootstrapValidator({
 						message: 'This value is not valid',
@@ -170,15 +177,26 @@
 									},
 													
 									
-								},
-								 submitHandler: function(validator, form, submitButton) {
-									 alert('paso');
-									 $.post(form.attr('action'), form.serialize(), function(result) {
-										 $("#mensajeLogin").html(result);
+								}
+							}).on('success.form.bv', function(e) {
+								   e.preventDefault();
+
+								    var $form = $(e.target);
+								    var bv = $form.data('bootstrapValidator');
+
+								    $.post($form.attr('action'), $form.serialize())
+								    .success( function(data) { 
+								        // great success
+								        if(data.bandera===1){
+								    	$("#mensajeLogin").html( data.msg );
 								     	 $("#mensajeContenedor").css('display','block');
-									 }, 'json');					   
-								 }
-							});
+								        } else {
+								        	window.location = data.msg;
+									      	return false;
+								    	}
+								     })
+								   
+								});
 
 
 						

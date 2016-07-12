@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Hemeroteca\Usuarios::class,
+            'model' => Hemeroteca\User::class,
         ],
 
         // 'users' => [
