@@ -131,15 +131,18 @@
                         <li>
                             <a href="#"><i class="fa fa-calendar "></i> Reportes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                          <a href="#"><i class='fa fa-pie-chart'></i> Reportes Individuales</a>
+                                	   <li>
+                                          <a href="{{route('reporte.obras')}}"><i class='fa fa-pie-chart'></i> Reportes Obras</a>
+                                       </li>
+                                	   <li>
+                                          <a href="#"><i class='fa fa-pie-chart'></i> Reportes Prestaciones</a>
+                                       </li>
+                                       <li>
+                                          <a href="#"><i class='fa fa-pie-chart'></i> Reportes Donaciones</a>
                                        </li>
                                        <li>
                                           <a href="{{route('reportes.index')}}"><i class='fa fa-pie-chart'></i> Reportes Clientes</a>
-                                       </li>
-                                        <li>
-                                          <a href="#"><i class='fa fa-clipboard fa-fw'></i> Reportes Donación</a>
-                                       </li>
+                                       </li>                                        
                                
                             </ul>
                         </li>                    

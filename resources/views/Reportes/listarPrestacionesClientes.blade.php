@@ -4,10 +4,10 @@
 
 
 <div class="row">
-  <div class= "col-md-11 ">
-    <div class="panel panel-default">
-    <div class="panel-heading" style="text-align:center;">Clientes</div>
-      <div class="panel-body">
+  	<div class="col-lg-12">
+		<h1 class="page-header">Reporte Clientes</h1>
+	</div>
+	<div class="col-lg-12">
 
         {!!Form::open(['route'=>['reportes.index'],'method'=>'GET','class'=>'navbar-form navbar-left pull-right','role'=>'search'])!!}
         <div id="form-group"  >
@@ -17,9 +17,9 @@
         {!!Form::close()!!}
 
         <p>Total {{$Clientesobj->total()}} Registros</p>
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
          <thead >
-           <tr class="bg-info" style="background-color:#d3d3d3">
+           <tr>
             <th>Nombres </th>
             <th>Apellidos</th>
             <th>Cédula</th>
@@ -39,12 +39,10 @@
          @endforeach
        </tbody>
      </table>
-
+{!!$Clientesobj->render()!!}
 
    </div>
  </div>
-</div>
-{!!$Clientesobj->render()!!}
-</div>
+
 
 @stop

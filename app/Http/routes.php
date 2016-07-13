@@ -78,6 +78,17 @@ Route::get('reservaciones/obra/{id}', [
 		'uses' => 'ReservarDonarController@mostrarObra',
 		'middleware' => 'auth'
 ]);
+
+Route::match(['get', 'post'],'reporte/obras', [
+		'as' => 'reporte.obras',
+		'uses' => 'PdfController@buscarObras',
+]);
+
+Route::post('reporte/exportar', [
+		'as' => 'reporte.obrasExportar',
+		'uses' => 'PdfController@exportarObras',
+]);
+
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	
 

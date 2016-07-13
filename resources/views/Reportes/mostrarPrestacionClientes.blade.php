@@ -2,9 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Reportes</title>
-
-    <title> Laravel </title>
+    <title>Reporte de Obras</title>
     <link rel="stylesheet" href="css/stylo.css" media="all" />
     
   </head>
