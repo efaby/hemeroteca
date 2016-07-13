@@ -15,11 +15,13 @@ class PdfController extends Controller
 Public function index(Request $request)
 
 {       $activo='activo';
+		$cedula = $request->get('cedula');
         $Clientesobj = Clientes::busqueda($request->get('cedula'))->clienteactivo()->paginate(10);
        // $Clientesobj = Clientes::where('activo_pasivo',$activo)->paginate(7);
-        return view('Reportes.listarPrestacionesClientes',compact('Clientesobj'));
+        return view('Reportes.listarPrestacionesClientes',compact('Clientesobj','cedula'));
 
 }
+
 
   public function vistaPdfClientes($tipo) 
     {
@@ -135,6 +137,56 @@ Public function index(Request $request)
     	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
     
     }
+    public function buscarClientes(Request $request){
+    	$activo='activo';
+    	$cedula = $request->get('cedula');
+    	$Clientesobj = Clientes::busqueda($request->get('cedula'))->clienteactivo()->paginate(env('LIMIT_LIST'));
+    	$Clientesobj->appends(array('cedula' => $cedula))->links();
+    	return view('Reportes.listarPrestacionesClientes',compact('Clientesobj','cedula'));
+    }
+    public function exportarClientes(Request $request){
+
+    	$activo='activo';
+    	$cedula = $request->get('cedula');
+    	$Clientesobj = Clientes::busqueda($cedula)->clienteactivo()->get();
+    	$fecha = date('Y-m-d');
+    	$tipo = $request->get('tipo');    
+    	$view = \View::make('Reportes.exportarClientes',compact('Clientesobj','fecha'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
     
+    }
+    
+    public function detalleCliente($id,Request $request){
+    	
+    	$estado = $request->get('estado');
+    	$estados = array('pres','don');
+    	if($estado!=''){
+    		$estados = array($estado);
+    	}
+    	$listado=ReservacionesDonaciones::where('cliente_idcliente',$id)->whereIn('prestacion_donacion', $estados)->paginate(env('LIMIT_LIST'));
+    	$cliente=Clientes::find($id);
+    	$listado->appends(array('estado' => $estado))->links();
+    	return view('Reportes.detalleCliente',compact('cliente','listado','id','estado'));
+    }
+    
+    public function exportarClienteDetalles($id,Request $request){
+    
+    	$estado = $request->get('estado');
+    	$estados = array('pres','don');
+    	if($estado!=''){
+    		$estados = array($estado);
+    	}
+    	$listado=ReservacionesDonaciones::where('cliente_idcliente',$id)->whereIn('prestacion_donacion', $estados)->get();
+    	$cliente=Clientes::find($id);
+    	$fecha = date('Y-m-d');
+    	$tipo = $request->get('tipo');
+    	$view = \View::make('Reportes.exportarClienteDetalles',compact('cliente','listado','id','estado','fecha'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
+    
+    }
     
 }

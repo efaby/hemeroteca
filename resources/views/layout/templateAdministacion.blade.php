@@ -141,7 +141,7 @@
                                           <a href="{{route('reporte.donaciones')}}"><i class='fa fa-pie-chart'></i> Reportes Donaciones</a>
                                        </li>
                                        <li>
-                                          <a href="{{route('reportes.index')}}"><i class='fa fa-pie-chart'></i> Reportes Clientes</a>
+                                          <a href="{{route('reporte.clientes')}}"><i class='fa fa-pie-chart'></i> Reportes Clientes</a>
                                        </li>                                        
                                
                             </ul>

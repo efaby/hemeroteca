@@ -82,21 +82,25 @@ Route::get('reservaciones/obra/{id}', [
 Route::match(['get', 'post'],'reporte/obras', [
 		'as' => 'reporte.obras',
 		'uses' => 'PdfController@buscarObras',
+		'middleware' => 'auth'
 ]);
 
 Route::post('reporte/exportar', [
 		'as' => 'reporte.obrasExportar',
 		'uses' => 'PdfController@exportarObras',
+		'middleware' => 'auth'
 ]);
 
 Route::match(['get', 'post'],'reporte/prestaciones', [
 		'as' => 'reporte.prestaciones',
 		'uses' => 'PdfController@buscarPrestaciones',
+		'middleware' => 'auth'
 ]);
 
 Route::post('reporte/exportarPrestaciones', [
 		'as' => 'reporte.obrasExportarPrestaciones',
 		'uses' => 'PdfController@exportarPrestaciones',
+		'middleware' => 'auth'
 ]);
 
 Route::match(['get', 'post'],'reporte/donaciones', [
@@ -107,9 +111,31 @@ Route::match(['get', 'post'],'reporte/donaciones', [
 Route::post('reporte/exportarDonaciones', [
 		'as' => 'reporte.obrasExportarDonaciones',
 		'uses' => 'PdfController@exportarDonaciones',
+		'middleware' => 'auth'
 ]);
 
+Route::match(['get', 'post'],'reporte/clientes', [
+		'as' => 'reporte.clientes',
+		'uses' => 'PdfController@buscarClientes',
+		'middleware' => 'auth'
+]);
 
+Route::post('reporte/exportarClientes', [
+		'as' => 'reporte.exportarClientes',
+		'uses' => 'PdfController@exportarClientes',
+		'middleware' => 'auth'
+]);
+
+Route::match(['get', 'post'],'reporte/detalleCliente/{id}', [
+		'as' => 'reporte.detalleCliente',
+		'uses' => 'PdfController@detalleCliente',
+		'middleware' => 'auth'
+]);
+Route::match(['get', 'post'],'reporte/exportarClienteDetalles/{id}', [
+		'as' => 'reporte.exportarClienteDetalles',
+		'uses' => 'PdfController@exportarClienteDetalles',
+		'middleware' => 'auth'
+]);
 
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	
