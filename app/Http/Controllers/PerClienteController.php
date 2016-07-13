@@ -24,7 +24,7 @@ class PerClienteController extends Controller
     {
 
         //Usuario nombre del modelo
-         $Clientesobj = Clientes::busqueda($request->get('cedula'))->paginate(8);
+         $Clientesobj = Clientes::busqueda($request->get('cedula'))->paginate(env('LIMIT_LIST'));
          $cedula = $request->get('cedula');
         return view('Personas.Clientes.listar',compact('Clientesobj', 'cedula'));
     }

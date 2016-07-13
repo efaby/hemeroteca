@@ -22,7 +22,7 @@ class CatTipoObrasController extends Controller
     public function index()
     {
         //Usuario nombre del modelo
-         $tipoObrasobj=TipoObras::paginate(5);
+         $tipoObrasobj=TipoObras::paginate(env('LIMIT_LIST'));
         return view('Catalogos.TipoObras.listar',compact('tipoObrasobj'));
     }
 

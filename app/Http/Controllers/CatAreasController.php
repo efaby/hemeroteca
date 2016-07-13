@@ -23,7 +23,7 @@ class CatAreasController extends Controller
     public function index()
     {
         //Usuario nombre del modelo
-         $areasobj=Areas::paginate(5);
+         $areasobj=Areas::paginate(env('LIMIT_LIST'));
         return view('Catalogos.Area.listar',compact('areasobj'));
     }
 

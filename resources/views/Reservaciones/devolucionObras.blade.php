@@ -64,6 +64,7 @@
          </tr>
          @endforeach
   	</table>
+  	  	{!!$listadoObras->render()!!}
   	</div>
 </div>
 {!!Form::open(['route'=>['reservaciones.devolverObra'],'method'=>'POST','role'=>'search', 'id'=>'frmGuardar']) !!}

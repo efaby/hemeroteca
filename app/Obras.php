@@ -85,7 +85,7 @@ public function ListaRelacionadaTipoObras()
             });
   	}
   	
-  	return $query->get();
+  	return $query->paginate(env('LIMIT_LIST'));
             
   }
   

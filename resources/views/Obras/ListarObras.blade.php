@@ -45,10 +45,10 @@
      @endforeach
      </tbody>
  </table>
-
+{!!$ObrasObj->render()!!}
   </div>
 
-{!!$ObrasObj->render()!!}
+
 </div>
 
 

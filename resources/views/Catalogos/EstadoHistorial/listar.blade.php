@@ -33,6 +33,7 @@
      @endforeach
      </tbody>
  </table>
+ {!!$EstadoHistorialobj->render()!!}
 </div>
 </div>
 
@@ -78,6 +79,6 @@ function eliminar(id){
 
 
 
-{!!$EstadoHistorialobj->render()!!}
+
 
 @stop

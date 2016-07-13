@@ -34,6 +34,7 @@
    @endforeach
  </tbody>
 </table>
+{!!$Usuariosobj->render()!!}
 </div>
 </div>
 
@@ -75,9 +76,5 @@
   }
 </script>
 <!-- Fin Eliminar Tipo Usuario -->
-
-
-
-{!!$Usuariosobj->render()!!}
 
 @stop

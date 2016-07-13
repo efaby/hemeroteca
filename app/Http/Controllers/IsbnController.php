@@ -68,7 +68,7 @@ class IsbnController extends Controller
     {
        
         // $Isbnobj = ObraIsbn::find($id);
-         $Isbnobj=ObraIsbn::where('obras_id',$id)->paginate(5);
+         $Isbnobj=ObraIsbn::where('obras_id',$id)->paginate(env('LIMIT_LIST'));
          $Obrasobj=Obras::find($id); 
           return view('Obras.EliminaObrasIsbn',compact('Isbnobj','Obrasobj'));
     }

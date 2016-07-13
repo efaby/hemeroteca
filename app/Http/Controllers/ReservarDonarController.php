@@ -164,19 +164,26 @@ public function index()
     
     public function devolucionObra(Request $request){
     	
-    	$textoBuscar =null;
+    	$textoBuscar = ($request->session()->has('textoBuscar'))?$request->session()->get('textoBuscar'):null;
     	$listadoObras = array();
     	$resultado = false;
-    	$fechaInicio = Carbon::now();
-    	$fechaInicio= $fechaFin = $fechaInicio->toDateString();
+    	$fecha = Carbon::now();
+        	
+    	$fechaInicio = ($request->session()->has('fechaInicio'))?$request->session()->get('fechaInicio'):$fecha->toDateString();
+    	$fechaFin = ($request->session()->has('fechaFin'))?$request->session()->get('fechaFin'):$fecha->toDateString();
+    	
     	if ($request->isMethod('POST'))
     	{
     		$textoBuscar = $request->get('texto_buscar');
     		$fechaInicio = $request->get('fecha_inicio');
     		$fechaFin = $request->get('fecha_fin');  		
-    		$listadoObras =  ReservacionesDonaciones::ObtenerObras($textoBuscar,$fechaInicio,$fechaFin);	    		
-    		$resultado = true;
-    	}     	 
+    		
+    		$request->session()->put('textoBuscar', $textoBuscar);
+    		$request->session()->put('fechaInicio', $fechaInicio);
+    		$request->session()->put('fechaFin', $fechaFin);
+    	}     
+    	$listadoObras =  ReservacionesDonaciones::ObtenerObras($textoBuscar,$fechaInicio,$fechaFin);
+    	$resultado = true;
     	$mensaje = $request->session()->get('mensaje');
     	return view ('Reservaciones.devolucionObras',compact('listadoObras','textoBuscar','resultado','mensaje','fechaInicio', 'fechaFin'));
     	}

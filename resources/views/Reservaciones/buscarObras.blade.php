@@ -87,6 +87,7 @@
          </tr>
          @endforeach
   	</table>
+  	{!!$listadoObras->render()!!}
   	</div>
 </div>
 

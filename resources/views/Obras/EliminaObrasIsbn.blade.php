@@ -41,10 +41,10 @@
 					</tbody>
 				</table>
 				{!!$Isbnobj->render()!!}
-				<a href="{{route('obrasRegistros.create')}}" class="btn btn-info">Regresar</a>
+				
 			</div>
 		</div>
-
+<a href="{{route('obrasRegistros.create')}}" class="btn btn-info">Regresar</a>
  <!-- Inicio Modal Crear Registro -->
  <div class="modal fade" id="IsbnModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" style="width:215px">

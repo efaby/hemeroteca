@@ -106,9 +106,9 @@
                                 <li>
                                     <a href="{{route('area.index')}}"><i class='fa fa-indent fa-fw'></i> Areas</a>
                                 </li>
-                                 <li>
+                              <!--    <li>
                                     <a href="{{route('estado.index')}}"><i class='fa fa-list-ul fa-fw'></i> Estado Historial</a>
-                                </li>
+                                </li> --> 
 
                             </ul>
                         </li>

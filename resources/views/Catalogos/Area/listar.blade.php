@@ -32,6 +32,7 @@
      @endforeach
      </tbody>
  </table>
+ {!!$areasobj->render()!!}
 </div>
 </div>
  <!-- Modal Crear Area -->
@@ -75,6 +76,6 @@ function eliminar(id){
 
 
 
-{!!$areasobj->render()!!}
+
 
 @stop

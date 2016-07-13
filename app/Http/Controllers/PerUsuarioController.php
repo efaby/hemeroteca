@@ -25,7 +25,7 @@ class PerUsuarioController extends Controller
     {
 
         //Usuario nombre del modelo
-         $Usuariosobj=Usuarios::paginate(5);
+         $Usuariosobj=Usuarios::paginate(env('LIMIT_LIST'));
         return view('Personas.Usuarios.listar',compact('Usuariosobj'));
     }
 

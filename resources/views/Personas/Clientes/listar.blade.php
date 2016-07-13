@@ -43,12 +43,9 @@
          @endforeach
        </tbody>
      </table>
-
-
-   </div>
-
 {!!$Clientesobj->render()!!}
-</div>
+   </div>
+   </div>
 
 
 <!-- Modal Crear Usuario -->
@@ -79,6 +76,5 @@
 </div>
 <!-- Fin Modal Leer Usuario -->
 
-{!!$Clientesobj->render()!!}
 
 @stop

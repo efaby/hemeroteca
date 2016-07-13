@@ -22,7 +22,7 @@ class CatTipoRegistroController extends Controller
     public function index()
     {
         //Usuario nombre del modelo
-         $TipoRegistroobj=TipoRegistro::paginate(5);
+         $TipoRegistroobj=TipoRegistro::paginate(env('LIMIT_LIST'));
         return view('Catalogos.TipoRegistro.listar',compact('TipoRegistroobj'));
     }
 

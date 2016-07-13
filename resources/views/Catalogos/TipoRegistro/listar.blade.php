@@ -33,6 +33,7 @@
      @endforeach
      </tbody>
  </table>
+ {!!$TipoRegistroobj->render()!!}
 </div>
 </div>
 
@@ -73,10 +74,5 @@ function eliminar(id){
 }
 </script>
  <!-- Fin Eliminar Tipo Usuario -->
-
-
-
-
-{!!$TipoRegistroobj->render()!!}
 
 @stop

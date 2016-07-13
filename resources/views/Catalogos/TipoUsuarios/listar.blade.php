@@ -31,6 +31,7 @@
      @endforeach
      </tbody>
  </table>
+ {!!$tipoUsuarioobj->render()!!}
 </div>
 </div>
  
@@ -63,6 +64,6 @@
 </div>
  <!-- Fin Modal Leer Usuario -->
 
-{!!$tipoUsuarioobj->render()!!}
+
 
 @stop

@@ -22,7 +22,7 @@ class PerProveedorController extends Controller
     public function index()
     {
         //Usuario nombre del modelo
-         $Proveedoresobj=Proveedores::paginate(5);
+         $Proveedoresobj=Proveedores::paginate(env('LIMIT_LIST'));
         return view('Personas.Proveedores.listar',compact('Proveedoresobj'));
     }
 

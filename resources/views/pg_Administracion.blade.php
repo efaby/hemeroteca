@@ -83,7 +83,7 @@
 			</div>
 			<a href="{{route('reservaciones.devolucionObra')}}">
 				<div class="panel-footer">
-					<span class="pull-left">View Details</span> <span
+					<span class="pull-left">Ver Detalles</span> <span
 						class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 					<div class="clearfix"></div>
 				</div>

@@ -14,7 +14,7 @@ class PdfController extends Controller
 Public function index(Request $request)
 
 {       $activo='activo';
-        $Clientesobj = Clientes::busqueda($request->get('cedula'))->clienteactivo()->paginate(8);
+        $Clientesobj = Clientes::busqueda($request->get('cedula'))->clienteactivo()->paginate(10);
        // $Clientesobj = Clientes::where('activo_pasivo',$activo)->paginate(7);
         return view('Reportes.listarPrestacionesClientes',compact('Clientesobj'));
 

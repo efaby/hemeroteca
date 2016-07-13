@@ -22,7 +22,7 @@ class CatEstadoHistorialController extends Controller
     public function index()
     {
         //Usuario nombre del modelo
-         $EstadoHistorialobj=EstadoObra::paginate(5);
+         $EstadoHistorialobj=EstadoObra::paginate(env('LIMIT_LIST'));
         return view('Catalogos.EstadoHistorial.listar',compact('EstadoHistorialobj'));
     }
 

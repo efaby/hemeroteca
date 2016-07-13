@@ -33,6 +33,7 @@
      @endforeach
      </tbody>
  </table>
+ {!!$tipoObrasobj->render()!!}
 </div>
 </div>
 
@@ -74,9 +75,5 @@ function eliminar(id){
 </script>
  <!-- Fin Eliminar Tipo Area -->
 
-
-
-
-{!!$tipoObrasobj->render()!!}
 
 @stop

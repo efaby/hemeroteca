@@ -21,7 +21,7 @@ class CatTipoUsuarioController extends Controller
     {
 
         //Usuario nombre del modelo
-         $tipoUsuarioobj=TipoUsuario::paginate(7);
+         $tipoUsuarioobj=TipoUsuario::paginate(env('LIMIT_LIST'));
         return view('Catalogos.TipoUsuarios.listar',compact('tipoUsuarioobj'));
     }
 

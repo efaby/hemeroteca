@@ -31,6 +31,7 @@
    @endforeach
  </tbody>
 </table>
+{!!$Proveedoresobj->render()!!}
 </div>
 </div>
 
@@ -62,6 +63,6 @@
 </div>
 <!-- Fin Modal Leer Proveedores -->
 
-{!!$Proveedoresobj->render()!!}
+
 
 @stop
