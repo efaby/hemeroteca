@@ -74,7 +74,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Juan jose','Alvarez','0602145214','mail@mail.com','calle 4','036215422','0984032314','M','pasivo'),(2,'cccc','bb','0602145217','mail12@mail.com','calle 4','036215422','0984032314','M','activo'),(3,'cliente','cliente','0602145215','mail17@mail.com','calle 41','036215422','0984032314','M','activo');
+INSERT INTO `cliente` VALUES (1,'Juan jose','Alvarez','0602145214','mail@mail.com','calle 4','036215422','0984032314','M','activo'),(2,'cccc','bb','0602145217','mail12@mail.com','calle 4','036215422','0984032314','M','activo'),(3,'cliente','cliente','0602145215','mail17@mail.com','calle 41','036215422','0984032314','M','activo');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `obras` (
   CONSTRAINT `fk_obras_proveedor1` FOREIGN KEY (`proveedor_idproveedor`) REFERENCES `proveedor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_obras_tipos_obras1` FOREIGN KEY (`tipos_obras_idtipos_obras`) REFERENCES `tipos_obras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_obras_tipo_registro1` FOREIGN KEY (`tipo_registro_id`) REFERENCES `tipo_registro` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `obras` (
 
 LOCK TABLES `obras` WRITE;
 /*!40000 ALTER TABLE `obras` DISABLE KEYS */;
-INSERT INTO `obras` VALUES (1,'yo autor','editorial pepito','Obra 1','2016-12-03','2016-07-05',200,1,1,1,1,'es una buan obra'),(2,'Juan Marcos','ninguna','Obras 3','2016-07-03','2016-07-07',45,1,1,1,1,'es una buan obra');
+INSERT INTO `obras` VALUES (1,'yo autor','editorial pepito','Obra 1','2016-12-03','2016-07-05',200,1,1,2,1,'es una buan obra'),(2,'Juan Marcos','ninguna','Obras 3','2016-07-03','2016-07-07',45,1,1,2,1,'es una buan obra'),(3,'juan','asasa','Patitp LEE','2016-07-05','2016-07-13',40,1,1,1,1,'asasasasas');
 /*!40000 ALTER TABLE `obras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +167,7 @@ CREATE TABLE `obras_isbn` (
   KEY `fk_obras_isbn_estado_obras1_idx` (`estado_obras_id`),
   CONSTRAINT `fk_obras_isbn_estado_obras1` FOREIGN KEY (`estado_obras_id`) REFERENCES `estado_obras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_obras_isbn_obras1` FOREIGN KEY (`obras_id`) REFERENCES `obras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +176,7 @@ CREATE TABLE `obras_isbn` (
 
 LOCK TABLES `obras_isbn` WRITE;
 /*!40000 ALTER TABLE `obras_isbn` DISABLE KEYS */;
-INSERT INTO `obras_isbn` VALUES (1,1,3,'CD2','activo'),(2,1,3,'cd3','activo'),(3,1,3,'cd4','activo'),(4,2,1,'cdg-098','pasivo');
+INSERT INTO `obras_isbn` VALUES (1,1,2,'CD2','activo'),(2,1,3,'cd3','activo'),(3,1,2,'cd4','activo'),(4,2,1,'cdg-098','pasivo'),(5,3,1,'isbn890','activo');
 /*!40000 ALTER TABLE `obras_isbn` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +212,7 @@ CREATE TABLE `prestaciones_donaciones` (
 
 LOCK TABLES `prestaciones_donaciones` WRITE;
 /*!40000 ALTER TABLE `prestaciones_donaciones` DISABLE KEYS */;
-INSERT INTO `prestaciones_donaciones` VALUES (16,'2016-07-08',5,1,'pres',3,0,'2016-07-12','2016-07-12'),(17,'2016-07-08',1,3,'pres',1,0,'2016-07-09','2016-07-08'),(18,'2016-07-08',2,3,'pres',4,0,'2016-07-08','2016-07-08'),(19,'2016-07-08',1,3,'don',2,1,'2016-07-09',NULL),(20,'2016-07-12',3,1,'pres',1,0,'2016-07-15','2016-07-12'),(21,'2016-07-12',3,1,'pres',3,0,'2016-07-15','2016-07-12'),(22,'2016-07-12',1,2,'pres',4,0,'2016-07-13','2016-07-12'),(23,'2016-07-12',1,1,'don',1,1,'2016-07-13',NULL),(24,'2016-07-12',1,1,'don',3,1,'2016-07-13',NULL);
+INSERT INTO `prestaciones_donaciones` VALUES (16,'2016-07-08',5,1,'pres',3,0,'2016-07-12','2016-07-12'),(17,'2016-07-08',1,3,'pres',1,0,'2016-07-09','2016-07-08'),(18,'2016-07-08',2,3,'pres',4,0,'2016-07-08','2016-07-08'),(19,'2016-07-08',1,3,'don',2,1,'2016-07-09',NULL),(20,'2016-07-12',3,1,'pres',1,0,'2016-07-15','2016-07-12'),(21,'2016-07-12',3,1,'pres',3,0,'2016-07-15','2016-07-12'),(22,'2016-07-12',1,2,'pres',4,0,'2016-07-13','2016-07-12'),(23,'2016-07-12',1,1,'pres',1,1,'2016-07-13',NULL),(24,'2016-07-12',1,1,'pres',3,1,'2016-07-13',NULL);
 /*!40000 ALTER TABLE `prestaciones_donaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,4 +375,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-07-12 13:52:46
+-- Dump completed on 2016-07-13 17:08:51
