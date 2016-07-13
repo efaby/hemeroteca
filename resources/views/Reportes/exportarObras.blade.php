@@ -9,9 +9,8 @@
   <body >
       <header class="clearfix">
       <div id="logo">
-        <img src="{{asset("imagenes/inpc2.png")}}"/>
-      </div>
-      
+        <img src="{{asset('imagenes/inpc2.png')}}"/>
+      </div>      
     </header>
      <main>
 	<div id="details" class="clearfix">
