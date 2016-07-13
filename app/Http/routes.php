@@ -99,6 +99,18 @@ Route::post('reporte/exportarPrestaciones', [
 		'uses' => 'PdfController@exportarPrestaciones',
 ]);
 
+Route::match(['get', 'post'],'reporte/donaciones', [
+		'as' => 'reporte.donaciones',
+		'uses' => 'PdfController@buscarDonaciones',
+]);
+
+Route::post('reporte/exportarDonaciones', [
+		'as' => 'reporte.obrasExportarDonaciones',
+		'uses' => 'PdfController@exportarDonaciones',
+]);
+
+
+
 Route::get('descargaPdfClientes/{tipo}','PdfController@descargaPdfClientes');	
 Route::get('vistaPdfClientes/{tipo}','PdfController@vistaPdfClientes');	
 

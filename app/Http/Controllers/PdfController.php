@@ -109,5 +109,32 @@ Public function index(Request $request)
     	 
     }
     
+    public function buscarDonaciones(Request $request){
+    
+    	$fechaInicio = $request->get('fecha_inicio');
+    	$fechaFin = $request->get('fecha_fin');
+    	$listado =  ReservacionesDonaciones::ObtenerObrasReporte('don',$fechaInicio,$fechaFin,true);
+    	$listado->appends(array('fecha_inicio' => $fechaInicio,'fecha_fin' => $fechaFin))->links();
+    	return view ('Reportes.listarDonaciones',compact('listado','estado','fechaInicio', 'fechaFin'));
+    }
+    
+    public function exportarDonaciones(Request $request){
+    	 
+    	$fechaInicio = $request->get('fecha_inicio');
+    	$fechaFin = $request->get('fecha_fin');
+    	$tipo = $request->get('tipo');
+    	$fecha = date('Y-m-d');
+    	$listado =  ReservacionesDonaciones::ObtenerObrasReporte('don',$fechaInicio,$fechaFin,false);
+    	$filtro = "Filtro: ";
+    	$filtro .= ($fechaInicio != '')?"Desde: ".$fechaInicio:"Todas";
+    	$filtro .= ($fechaFin != '')?" Hasta: ".$fechaFin:"";
+    	 
+    	$view = \View::make('Reportes.exportarDonaciones',compact('listado','filtro','fecha'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
+    
+    }
+    
     
 }

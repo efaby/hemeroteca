@@ -5,7 +5,7 @@
 
 <div class="row">
   	<div class="col-lg-12">
-		<h1 class="page-header">Reporte Obras Prestadas</h1>
+		<h1 class="page-header">Reporte Obras Donadas</h1>
 	</div>
 	<div class="col-lg-12">
 	<div style="padding-bottom: 20px; text-align: right;"> <button id="btnPdf" class="btn btn-info"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></button>
@@ -31,10 +31,10 @@
            <tr>
            	<th>ISBN </th>
             <th>Título </th>
+            <th>Area </th>
+            <th>Tipo </th>
             <th>Cliente</th>
-            <th>Fecha Préstamo</th>
-            <th>Fecha Entrega</th>   
-            <th>Estado</th>          
+            <th>Fecha Donacion</th>                    
           </tr>
         </thead>
         <tbody>
@@ -43,15 +43,11 @@
          <tr>
            <td>{{ $item->RelacionDonacionesHistorialIsbn->codigo_isbn }}</td>
            <td>{{ $item->RelacionDonacionesHistorialIsbn->isbnObras->titulo }}</td>
+           <td>{{ $item->RelacionDonacionesHistorialIsbn->isbnObras->ListaRelacionadaArea->nombre_area  }}</td>
+           <td>{{ $item->RelacionDonacionesHistorialIsbn->isbnObras->ListaRelacionadaTipoObras->nombre_tipos_obras }}</td>
            <td>{{ $item->ListaRelacionadaCliente->nombre_cliente }} {{ $item->ListaRelacionadaCliente->apellido_cliente }}</td>
            <td>{{ $item->fecha_reservacion }}</td>
-           <td>{{ $item->fecha_devolucion }}</td>
-           <td> @if($item->activo == 1)
-           			Prestada           			
-           		@else
-           			Entregada
-           		@endif
-           </td>
+          
          </tr>
          @endforeach
        </tbody>
@@ -64,14 +60,14 @@
 $(document).ready(function(){
 	
 	$('#btnBuscar').click(function(){
-		var accion = "{{route('reporte.prestaciones')}}"			
+		var accion = "{{route('reporte.donaciones')}}"			
 			$("#frmBuscar").attr('action', accion);
 			$("#frmBuscar").attr('target', '');
 			$("#frmBuscar").submit();		
 	});
 
 	$('#btnPdf').click(function(){
-		var accion = "{{route('reporte.obrasExportarPrestaciones')}}"			
+		var accion = "{{route('reporte.obrasExportarDonaciones')}}"			
 			$("#frmBuscar").attr('action', accion);
 			$("#frmBuscar").attr('target', '_blank');
 			$("#tipo").val(1);
@@ -79,7 +75,7 @@ $(document).ready(function(){
 	});
 
 	$('#btnDescargar').click(function(){
-		var accion = "{{route('reporte.obrasExportarPrestaciones')}}"			
+		var accion = "{{route('reporte.obrasExportarDonaciones')}}"			
 			$("#frmBuscar").attr('action', accion);
 			$("#tipo").val(2);
 			$("#frmBuscar").submit();		
@@ -97,7 +93,7 @@ $(document).ready(function(){
 	      }  		
 	});
 	jQuery('#clear-search-button').on('click', function () {
-		var accion = "{{route('reporte.prestaciones')}}"			
+		var accion = "{{route('reporte.donaciones')}}"			
 		jQuery("#frmBuscar").attr('action', accion);
 		jQuery('#fecha_inicio').val('');
 		jQuery('#fecha_fin').val('');
