@@ -47,5 +47,20 @@ class ReservacionesDonaciones extends Model
     	return $query->paginate(env('LIMIT_LIST'));
     
     }
+    
+    static public function scopeObtenerObrasReporte($query, $tipo,$fechaInicio, $fechaFin,$paginacion){
+    
+    	$query->where('prestacion_donacion',"=",$tipo);
+    	 
+    	if($fechaInicio != ''){
+    		$query->where('fecha_reservacion',">=",$fechaInicio);
+    	}
+    	if($fechaFin != ''){
+    		$query->where('fecha_reservacion',"<=",$fechaFin);
+    	}
+    
+    	return ($paginacion)?$query->paginate(env('LIMIT_LIST')):$query->get();
+    
+    }
    
 }

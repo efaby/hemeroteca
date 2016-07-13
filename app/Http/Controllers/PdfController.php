@@ -54,7 +54,7 @@ Public function index(Request $request)
     		$estados = array($estado);
     	}
     	$obras = ObraIsbn::where('activo_pasivo','activo')->whereIn('estado_obras_id', $estados)->paginate(env('LIMIT_LIST'));
-            
+        $obras->appends(array('estado' => $estado))->links();    
     	return view ('Reportes.listarObras',compact('obras','estado'));    	
     }    
     
@@ -81,4 +81,33 @@ Public function index(Request $request)
     	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
     	
     }
+    
+    public function buscarPrestaciones(Request $request){
+    	 
+    	$fechaInicio = $request->get('fecha_inicio');
+    	$fechaFin = $request->get('fecha_fin');
+    	$listado =  ReservacionesDonaciones::ObtenerObrasReporte('pres',$fechaInicio,$fechaFin,true);
+    	$listado->appends(array('fecha_inicio' => $fechaInicio,'fecha_fin' => $fechaFin))->links();
+    	return view ('Reportes.listarPrestaciones',compact('listado','estado','fechaInicio', 'fechaFin'));
+    }
+    
+    public function exportarPrestaciones(Request $request){
+    	
+    	$fechaInicio = $request->get('fecha_inicio');
+    	$fechaFin = $request->get('fecha_fin');
+    	$tipo = $request->get('tipo');
+    	$fecha = date('Y-m-d');
+    	$listado =  ReservacionesDonaciones::ObtenerObrasReporte('pres',$fechaInicio,$fechaFin,false);
+    	$filtro = "Filtro: ";
+    	$filtro .= ($fechaInicio != '')?"Desde: ".$fechaInicio:"Todas";
+    	$filtro .= ($fechaFin != '')?" Hasta: ".$fechaFin:"";    	
+    	
+    	$view = \View::make('Reportes.exportarPrestaciones',compact('listado','filtro','fecha'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
+    	 
+    }
+    
+    
 }
