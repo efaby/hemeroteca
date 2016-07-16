@@ -106,6 +106,7 @@ Route::post('reporte/exportarPrestaciones', [
 Route::match(['get', 'post'],'reporte/donaciones', [
 		'as' => 'reporte.donaciones',
 		'uses' => 'PdfController@buscarDonaciones',
+		'middleware' => 'auth'
 ]);
 
 Route::post('reporte/exportarDonaciones', [
