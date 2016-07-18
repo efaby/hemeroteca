@@ -27,16 +27,16 @@ class ReservacionesDonaciones extends Model
     static public function scopeObtenerObras($query, $textoBuscar,$fechaInicio, $fechaFin){
     	 
     	//	$query = DB::table('obras');
-    	$query->distinct();
+    	$query->select('prestaciones_donaciones.*');
     	
     	if($textoBuscar != ''){    		
-    		$query->join('obras_isbn', 'obras_isbn.id', '=', 'obras_isbn_idobras_isbn');    		
+    		$query->join('obras_isbn', 'obras_isbn.id', '=', 'prestaciones_donaciones.obras_isbn_idobras_isbn');    		
     		$query->where('codigo_isbn', 'LIKE', "%$textoBuscar%");    		
     	}
     	
     	$query->where('activo',"=",1);
     	$query->where('prestacion_donacion',"=","pres");
-    	
+    
     	if($fechaInicio != ''){
     		$query->where('fecha_devolucion',">=",$fechaInicio);
     	}
