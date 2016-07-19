@@ -7,6 +7,8 @@ use Hemeroteca\Clientes;
 use Hemeroteca\ReservacionesDonaciones;
 use Hemeroteca\Http\Requests;
 use Hemeroteca\ObraIsbn;
+use Hemeroteca\Obras;
+use Illuminate\Support\Facades\DB;
 
 class PdfController extends Controller
 {
@@ -189,4 +191,49 @@ Public function index(Request $request)
     
     }
     
+    
+    public function buscarTiposObras(Request $request){
+    	 
+    	$resultados = $this->obtenerTiposObras();	   	
+    	return view ('Reportes.listarTiposObras',compact('resultados'));
+    }
+    
+    public function exportarTiposObras(Request $request){
+    	$resultados = $this->obtenerTiposObras();
+    	$fecha = date('Y-m-d');
+    	$tipo = $request->get('tipo');
+    	$view = \View::make('Reportes.exportarTiposObras',compact('resultados','fecha'))->render();
+    	$pdf = \App::make('dompdf.wrapper');
+    	$pdf->loadHTML($view);
+    	return ($tipo==1)? $pdf->stream('reporte'):$pdf->download('reporte.pdf');
+    	 
+    }
+    
+    private function obtenerTiposObras(){
+    	$obras = Obras::select(DB::raw('tipos_obras.id, count(obras.id) as total, obras_isbn.estado_obras_id, tipos_obras.nombre_tipos_obras'))
+    	->join('tipos_obras', 'tipos_obras.id', '=', 'obras.tipos_obras_idtipos_obras')
+    	->join('obras_isbn', 'obras.id', '=', 'obras_isbn.obras_id')
+    	->groupBy('tipos_obras.id')
+    	->groupBy('obras_isbn.estado_obras_id')
+    	->get();
+    	$resultados = array();
+    	$row = array();
+    	$id = 0;
+    	foreach ($obras as $item){
+    		if($id != $item->id){
+    			if($id != 0){
+    				$resultados[] = $row;
+    			}
+    			$total = 0;
+    			$id = $item->id;
+    			$row = array();
+    			$row['nombre'] = $item->nombre_tipos_obras;
+    			$row['total'] = 0;
+    		}
+    		$row[$item->estado_obras_id] = $item->total;
+    		$row['total'] = $row['total'] + $item->total;
+    	}
+    	$resultados[] = $row;
+    	return $resultados;
+    }
 }

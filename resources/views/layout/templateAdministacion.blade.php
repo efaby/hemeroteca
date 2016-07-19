@@ -131,8 +131,12 @@
                         <li>
                             <a href="#"><i class="fa fa-calendar "></i> Reportes<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                	   <li>
+                                	  
+                                	  <li>
                                           <a href="{{route('reporte.obras')}}"><i class='fa fa-pie-chart'></i> Reportes Obras</a>
+                                       </li>
+                                	   <li>
+                                          <a href="{{route('reporte.tiposObras')}}"><i class='fa fa-pie-chart'></i> Reportes Tipos Obras</a>
                                        </li>
                                 	   <li>
                                           <a href="{{route('reporte.prestaciones')}}"><i class='fa fa-pie-chart'></i> Reportes Prestaciones</a>

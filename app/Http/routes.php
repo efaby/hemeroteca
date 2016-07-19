@@ -79,6 +79,19 @@ Route::get('reservaciones/obra/{id}', [
 		'middleware' => 'auth'
 ]);
 
+Route::match(['get', 'post'],'reporte/tiposObras', [
+		'as' => 'reporte.tiposObras',
+		'uses' => 'PdfController@buscarTiposObras',
+		'middleware' => 'auth'
+]);
+
+Route::post('reporte/exportarTiposObras', [
+		'as' => 'reporte.tiposObrasExportar',
+		'uses' => 'PdfController@exportarTiposObras',
+		'middleware' => 'auth'
+]);
+
+
 Route::match(['get', 'post'],'reporte/obras', [
 		'as' => 'reporte.obras',
 		'uses' => 'PdfController@buscarObras',
