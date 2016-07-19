@@ -122,9 +122,11 @@ public function index()
     	if ($request->isMethod('POST'))
     	{
     		$textoBuscar = $request->get('texto_buscar');
-    		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');    		
-    		$request->session()->put($opcion.'textoBuscar', $textoBuscar);
-    		$request->session()->put($opcion.'filtros', $filtros);
+    		$filtros = is_array($request->get('filtro'))?$request->get('filtro'):array('titulo');  
+    		if($opcion=='buscar'){	
+	    		$request->session()->put($opcion.'textoBuscar', $textoBuscar);
+	    		$request->session()->put($opcion.'filtros', $filtros);
+    		}
     	} 
     	if($textoBuscar!=''){
     		$listadoObras =  Obras::ObtenerObras($textoBuscar,$filtros);
@@ -183,6 +185,7 @@ public function index()
     		$request->session()->put('fechaFin', $fechaFin);
     	}     
     	$listadoObras =  ReservacionesDonaciones::ObtenerObras($textoBuscar,$fechaInicio,$fechaFin);
+    	
     	$resultado = true;
     	$mensaje = $request->session()->get('mensaje');
     	return view ('Reservaciones.devolucionObras',compact('listadoObras','textoBuscar','resultado','mensaje','fechaInicio', 'fechaFin'));
