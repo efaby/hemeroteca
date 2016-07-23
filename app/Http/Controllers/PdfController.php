@@ -233,7 +233,10 @@ Public function index(Request $request)
     		$row[$item->estado_obras_id] = $item->total;
     		$row['total'] = $row['total'] + $item->total;
     	}
-    	$resultados[] = $row;
+    	if(array_key_exists('nombre',$row)){
+    		$resultados[] = $row;
+    	}
+    	
     	return $resultados;
     }
 }
